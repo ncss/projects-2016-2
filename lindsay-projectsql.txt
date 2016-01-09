@@ -26,3 +26,13 @@ CREATE TABLE activities(
 	icon BLOB
 	);
 	
+#### Create Following Table
+CREATE TABLE following(
+	follower INT references users(id),
+	followee INT references users(id),
+	timestamp NUMERIC NOT NULL
+	);
+	
+
+	
+	
