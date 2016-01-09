@@ -65,7 +65,7 @@ CREATE TABLE metrics(
 CREATE TABLE activities_metrics_types(
 	activity INT references users(id),
 	metric_type INT references metric_types(id),
-	activity_order TEXT
+	activity_order INT
 	); 
 	
 
