@@ -41,7 +41,7 @@ CREATE TABLE milestones(
 	timestamp NUMERIC NOT NULL
 	);	
 	
-#### Create table metric-types
+#### Create table metric_types
 CREATE TABLE metric_types(
 	id INT PRIMARY KEY NOT NULL,
 	title TEXT NOT NULL,
@@ -50,6 +50,23 @@ CREATE TABLE metric_types(
 	conversion_formula NUMERIC NOT NULL
 	);
 	
+#### Create table metrics
+CREATE TABLE metrics(
+	id INT PRIMARY KEY NOT NULL,
+	user INT references users(id),
+	activity INT references activities(id),
+	metric_type INT references metric_types(id),
+	value REAL NOT NULL,
+	timestamp NUMERIC NOT NULL,
+	submit_timestamp NUMERIC NOT NULL
+	);
+	
+#### Create table activities_metrics_types
+CREATE TABLE activities_metrics_types(
+	activity INT references users(id),
+	metric_type INT references metric_types(id),
+	activity_order TEXT
+	); 
 	
 
 	
