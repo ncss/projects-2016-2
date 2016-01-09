@@ -1,0 +1,28 @@
+#### Create Database
+CREATE footbook;
+
+######## Create Tables
+
+#### Create Users Table
+CREATE TABLE users(
+	id INT PRIMARY KEY NOT NULL,
+	username TEXT NOT NULL,
+	email TEXT NOT NULL,
+	fname TEXT NOT NULL,
+	lname TEXT NOT NULL,
+	dob NUMERIC,
+	postcode INT NOT NULL,
+	country_code NOT NULL,
+	permissions NUMERIC,
+	signup_timestamp NUMERIC NOT NULL,
+	image BLOB
+	); 
+
+#### Create Activities Table	
+CREATE TABLE activities(
+	id INT PRIMARY KEY NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT NOT NULL,
+	icon BLOB
+	);
+	
