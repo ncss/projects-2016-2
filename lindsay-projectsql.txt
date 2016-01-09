@@ -32,6 +32,24 @@ CREATE TABLE following(
 	followee INT references users(id),
 	timestamp NUMERIC NOT NULL
 	);
+
+#### Create milestones Table
+CREATE TABLE milestones(
+	id INT PRIMARY KEY NOT NULL,
+	user INT references users(id),
+	weight REAL,
+	timestamp NUMERIC NOT NULL
+	);	
+	
+#### Create table metric-types
+CREATE TABLE metric_types(
+	id INT PRIMARY KEY NOT NULL,
+	title TEXT NOT NULL,
+	unit TEXT NOT NULL,
+	description TEXT NOT NULL,
+	conversion_formula NUMERIC NOT NULL
+	);
+	
 	
 
 	
