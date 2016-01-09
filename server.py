@@ -1,11 +1,15 @@
 from tornado.ncss import Server, ncssbook_log
 
 def index_handler(response):
-  with open("indextest.html") as file:
+  with open("templates/index.html") as file:
+    response.write(file.read())
+
+def home_handler(response):
+  with open("templates/index.html") as file:
     response.write(file.read())
 
 def profile_handler(response, user_id):
-    with open("indextest.html") as file:
+    with open("templates/index.html") as file:
       response.write("Profile ID: " + user_id + file.read())
 
 server = Server()
