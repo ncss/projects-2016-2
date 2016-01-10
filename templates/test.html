@@ -6,16 +6,20 @@
 
     <body>
         <h1>This is a header</h1>
-       
+         {{ "<h1>I like elephants</h1>" }}
+        {% safe "<h1>I like dogs</h1>" %}
+      
         <p> {{ 3 + 5 }} </p>
+        {% for i in range(1, 10) %}
+        <p>{{i}}</p>
+        {% end for %}
         {% if a == 'B' %}
         {% if 3 + 2 == 6 %}
         {% elif 3 + 2 == 5 %}
         Elif works
-		{% else %}
         <h1><p>Yay</p></h1>
-        {% end if %}
         <p>Something else</p>
+        {% end if %}
         {% end if %}
         <p> {% include "test2.html" %} </p>
     </body>
