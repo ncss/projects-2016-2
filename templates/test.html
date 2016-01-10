@@ -1,0 +1,22 @@
+<html>
+
+    <head>
+        <title>Test page title</title>
+    </head>
+
+    <body>
+        <h1>This is a header</h1>
+       
+        <p> {{ 3 + 5 }} </p>
+        {% if a == 'B' %}
+        {% if 3 + 2 == 6 %}
+        {% elif 3 + 2 == 5 %}
+        Elif works
+		{% else %}
+        <h1><p>Yay</p></h1>
+        {% end if %}
+        <p>Something else</p>
+        {% end if %}
+        <p> {% include "test2.html" %} </p>
+    </body>
+</html>
