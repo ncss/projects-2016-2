@@ -7,6 +7,7 @@
 CREATE TABLE users(
 	id INTEGER PRIMARY KEY,
 	username TEXT NOT NULL,
+	password TEXT NOT NULL,
 	email TEXT NOT NULL,
 	fname TEXT NOT NULL,
 	lname TEXT NOT NULL,
