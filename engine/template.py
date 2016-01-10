@@ -80,7 +80,7 @@ class TemplateRenderError(Exception):
 
 def tokenize(text):
     """
-	takes text and seperates into chunks for parsing
+    takes text and seperates into chunks for parsing
 
     >>> tokenize("{{ include test.html }} blah {% if yes %}")
     ['{{ include test.html }}', ' blah ', '{% if yes %}']
@@ -158,7 +158,7 @@ class Parser:
                         raise TemplateSyntaxError("%s does not have a corresponding beginning statement"%(self.next()))
                     else:
                         self.next()
-						if type(root) == IfNode:
+                        if type(root) == IfNode:
                             return [root] + elses
                         return [root]
                 else:
