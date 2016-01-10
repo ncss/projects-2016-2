@@ -10,11 +10,11 @@ CREATE TABLE users(
 	email TEXT NOT NULL,
 	fname TEXT NOT NULL,
 	lname TEXT NOT NULL,
-	dob NUMERIC,
-	postcode INT NOT NULL,
-	country_code NOT NULL,
-	permissions NUMERIC,
-	signup_timestamp NUMERIC NOT NULL,
+	dob TEXT,
+	postcode TEXT NOT NULL,
+	country_code TEXT NOT NULL,
+	user_permissions INT,
+	signup_timestamp TEXT NOT NULL,
 	image BLOB
 	); 
 
@@ -30,7 +30,7 @@ CREATE TABLE activities(
 CREATE TABLE following(
 	follower INT references users(id),
 	followee INT references users(id),
-	timestamp NUMERIC NOT NULL
+	timestamp TEXT NOT NULL
 	);
 
 #### Create milestones Table
@@ -38,7 +38,10 @@ CREATE TABLE milestones(
 	id INT PRIMARY KEY NOT NULL,
 	user INT references users(id),
 	weight REAL,
-	timestamp NUMERIC NOT NULL
+	max_heartrate REAL,
+	resting_blood_pressure REAL,
+	height REAL,
+	timestamp REAL NOT NULL
 	);	
 	
 #### Create table metric_types
@@ -47,7 +50,7 @@ CREATE TABLE metric_types(
 	title TEXT NOT NULL,
 	unit TEXT NOT NULL,
 	description TEXT NOT NULL,
-	conversion_formula NUMERIC NOT NULL
+	conversion_formula TEXT NOT NULL
 	);
 	
 #### Create table metrics
@@ -64,7 +67,7 @@ CREATE TABLE metrics(
 #### Create table activities_metrics_types
 CREATE TABLE activities_metrics_types(
 	activity INT references users(id),
-	metric_type INT references metric_types(id),
+	metric_type TEXT references metric_types(id),
 	activity_order INT
 	); 
 	
