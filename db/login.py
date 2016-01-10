@@ -20,7 +20,7 @@ class User:
         self.image = image
 
     def load(self):
-	cur = conn.execute('''
+    cur = conn.execute('''
         SELECT *
         FROM users
         WHERE user_id = ?
@@ -41,8 +41,8 @@ class User:
     def save():
         cur = conn.execute('''
         INSERT into users (username, password, fname, lname, email, dob, postcode, country_code, signup_timestamp, image)
-	VALUES(?,?,?,?,?,?,?,?,?,?)
-	''', (self.username, self.password, self.fname, self.lname, self.email, self.dob, self.postcode, self.country_code, self.signup_timestamp, self.image))
+    VALUES(?,?,?,?,?,?,?,?,?,?)
+    ''', (self.username, self.password, self.fname, self.lname, self.email, self.dob, self.postcode, self.country_code, self.signup_timestamp, self.image))
 
     @staticmethod
     def login(username, password):
@@ -65,8 +65,8 @@ class User:
     def register(username="", password="", fname="", lname="", email="", dob="", postcode="", country_code="", user_permissions="", signup_timestamp="", image=""):
         cur = conn.execute('''
         INSERT into users (username, password, fname, lname, email, dob, postcode, country_code, signup_timestamp, image)
-	VALUES(?,?,?,?,?,?,?,?,?,?)
-	''', (username, password, fname, lname, email, dob, postcode, country_code, signup_timestamp, image))
+    VALUES(?,?,?,?,?,?,?,?,?,?)
+    ''', (username, password, fname, lname, email, dob, postcode, country_code, signup_timestamp, image))
 
     @staticmethod
     def delete(username):
