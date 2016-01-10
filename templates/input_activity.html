@@ -13,6 +13,9 @@ form {
 </STYLE>
 
 <UL>
+{% for activity_name, activity in activities.items() %}
+<P>{{activity_name}}, {{activity}}</P>
+{% end for %}
     <LI></LI>
 </UL>
 <H1>Insert title here</H1>

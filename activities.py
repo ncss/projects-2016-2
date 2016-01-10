@@ -31,11 +31,11 @@ activities = {
 		{"title": "Duration", "units": "minutes"},
 		{"title": "Distance", "units": "metres"},
 	]),
-	"push ups": Activity("Push ups","Pushing up","arrows-v"),[
+	"push_ups": Activity("Push ups","Pushing up","arrows-v"),[
 		{"title": "Duration", "units": "minutes"},
 		{"title": "Distance", "units": "metres"},
 	]),
-	"sit ups": Activity("Sit ups","Sitting up","arrow-h"),[
+	"sit_ups": Activity("Sit ups","Sitting up","arrow-h"),[
 		{"title": "Duration", "units": "minutes"},
 		{"title": "Distance", "units": "metres"},
 	]),
@@ -44,3 +44,17 @@ activities = {
 		{"title": "Distance", "units": "metres"},
 	]),
 	}
+	
+class ActivityInputHandler:
+    def get_template_data(self):
+	    return {"activities": activities}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
