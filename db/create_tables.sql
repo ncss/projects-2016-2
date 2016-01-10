@@ -1,5 +1,5 @@
 ---- Create Database
-CREATE footbook;
+--CREATE footbook;
 
 -------- Create Tables
 
