@@ -1,7 +1,8 @@
 import sqlite3
 import datetime
 
-conn = sqlite3.
+conn = sqlite3.connect("ncssbook.db")
+
 class Metric:  
     def __init__(self, id="", user="", activity="", timestamp="", metric_type="", value=""):
         self.user = user
