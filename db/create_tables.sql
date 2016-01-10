@@ -1,9 +1,9 @@
-#### Create Database
-CREATE footbook;
+---- Create Database
+--CREATE footbook;
 
-######## Create Tables
+-------- Create Tables
 
-#### Create Users Table
+---- Create Users Table
 CREATE TABLE users(
 	id INT PRIMARY KEY NOT NULL,
 	username TEXT NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE users(
 	image BLOB
 	); 
 
-#### Create Activities Table	
+---- Create Activities Table	
 CREATE TABLE activities(
 	id INT PRIMARY KEY NOT NULL,
 	title TEXT NOT NULL,
@@ -26,14 +26,14 @@ CREATE TABLE activities(
 	icon BLOB
 	);
 	
-#### Create Following Table
+---- Create Following Table
 CREATE TABLE following(
 	follower INT references users(id),
 	followee INT references users(id),
 	timestamp TEXT NOT NULL
 	);
 
-#### Create milestones Table
+---- Create milestones Table
 CREATE TABLE milestones(
 	id INT PRIMARY KEY NOT NULL,
 	user INT references users(id),
@@ -44,7 +44,7 @@ CREATE TABLE milestones(
 	timestamp REAL NOT NULL
 	);	
 	
-#### Create table metric_types
+---- Create table metric_types
 CREATE TABLE metric_types(
 	id INT PRIMARY KEY NOT NULL,
 	title TEXT NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE metric_types(
 	conversion_formula TEXT NOT NULL
 	);
 	
-#### Create table metrics
+---- Create table metrics
 CREATE TABLE metrics(
 	id INT PRIMARY KEY NOT NULL,
 	user INT references users(id),
@@ -64,7 +64,7 @@ CREATE TABLE metrics(
 	submit_timestamp NUMERIC NOT NULL
 	);
 	
-#### Create table activities_metrics_types
+---- Create table activities_metrics_types
 CREATE TABLE activities_metrics_types(
 	activity INT references users(id),
 	metric_type TEXT references metric_types(id),
