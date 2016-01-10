@@ -80,6 +80,9 @@ class Parser:
         return self._tokens[self._position-1]
 
     def parse(self):
+        return self._parse_group()
+    
+    def _parse_group(self):
         root = GroupNode([])
         while not self.end():
             if self.peek().startswith('{{'):
