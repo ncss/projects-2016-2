@@ -3,6 +3,7 @@ import os
 
 #from tornado.ncss import ncssbook_log
 
+CRASH_ON_ERROR = False
 TEMPLATE_PATH = "templates"
 FOR_REGEX = r'{%\s*for\s+([\w]+)\s+in\s+(.+)\s*%}'
 
@@ -35,11 +36,13 @@ class GroupNode(Node):
     def __init__(self, children):
         self.children = children
 
-    def add_child(self, node):
-        self.children.append(node)
+    def add_child(self, nodes):
+        for node in nodes:
+            self.children.append(node)
 
     def render(self, context):
         result = ''
+        print(self.children)
         for i in self.children:
             result += i.render(context)
 
@@ -72,6 +75,9 @@ class ForNode(GroupNode):
 class TemplateSyntaxError(Exception):
     pass
 
+class TemplateRenderError(Exception):
+    pass
+
 def tokenize(text):
     """
 	takes text and seperates into chunks for parsing
@@ -85,6 +91,10 @@ def tokenize(text):
     tokens = [x for x in tokens if x]
 
     return tokens
+
+RE_IF = re.compile(r'{%\s*if\s*(.+?)\s*%}')
+RE_ELSE = re.compile(r'{%\s*else\s*%}')
+RE_INCLUDE = re.compile(r'{%\s*include\s*"([\w.]+)"\s%}')
 
 
 class Parser:
@@ -109,6 +119,9 @@ class Parser:
         return self._parse_group(True)
     
     def _parse_group(self, is_root=False, root=None):
+        
+        elses = []
+
         if not root:
             root = GroupNode([])
 
@@ -126,23 +139,38 @@ class Parser:
                     root.add_child(self._parse_for())
                 elif self.peek().startswith("{% if "):
                     root.add_child(self._parse_if())
+                elif self.peek().startswith("{% elif "):
+                    if type(root) == IfNode:
+                        return [root] + self._parse_elif()
+                    else:
+                        raise TemplateSyntaxError("elif without an if")
+                elif self.peek().startswith("{% else"):
+                    if type(root) == IfNode:
+                        self.next()
+                        condition = "not (" + root.condition +" )"
+                        node = IfNode(condition)
+                        elses += (self._parse_group(root=node))
+                        return [root] + elses
+                        
+
                 elif self.peek().startswith("{% end "):
                     if is_root:
                         raise TemplateSyntaxError("%s does not have a corresponding beginning statement"%(self.next()))
                     else:
                         self.next()
-                        return root
+						if type(root) == IfNode:
+                            return [root] + elses
+                        return [root]
                 else:
                     raise Exception("lrn2code")
             else:
-                
                 # text node
                 root.add_child(self._parse_text())
         if not is_root:
             # should never get here - we should have seen an
             # 'end x' statement
             raise TemplateSyntaxError("unmatched for or if")
-        return root
+        return [root]
 
     def _parse_for(self):
         re_match = re.match(FOR_REGEX, self.next())
@@ -160,13 +188,20 @@ class Parser:
         condition = match.group(1)
         node = IfNode(condition)
         return self._parse_group(root=node)
+    
+    def _parse_elif(self):
+        match = re.match(r'{%\s*elif\s*(.+?)\s*%}',self.next())
+        condition = match.group(1)
+        node = IfNode(condition)
+        return self._parse_group(root=node)
+
 
 
     def _parse_text(self):
-        return TextNode(self.next())
+        return [TextNode(self.next())]
 
     def _parse_eval(self):
-        return PythonNode(self.next().replace('{{', '').replace('}}', ''))
+        return [PythonNode(self.next().replace('{{', '').replace('}}', ''))]
 
 def render(filename, context):
     """
@@ -175,7 +210,7 @@ def render(filename, context):
     """
     text = open(os.path.join(TEMPLATE_PATH, filename)).read()
     tokens = tokenize(text)
-    return Parser(tokens).parse().render(context)
+    return Parser(tokens).parse()[0].render(context)
 
 if __name__ == "__main__":
     print(render("test.html", {'a': 'B', 'b': 'a'}))
