@@ -3,6 +3,7 @@ import os
 
 #from tornado.ncss import ncssbook_log
 
+CRASH_ON_ERROR = False
 TEMPLATE_PATH = "templates"
 FOR_REGEX = r'{%\s*for\s*([\w]+)\s*in\s*([\w|\(|\)]+)\s*%}'
 
@@ -60,6 +61,9 @@ class IfNode(GroupNode):
 class TemplateSyntaxError(Exception):
     pass
 
+class TemplateRenderError(Exception):
+    pass
+
 def tokenize(text):
     """
 	takes text and seperates into chunks for parsing
@@ -73,6 +77,10 @@ def tokenize(text):
     tokens = [x for x in tokens if x]
 
     return tokens
+
+RE_IF = re.compile(r'{%\s*if\s*(.+?)\s*%}')
+RE_ELSE = re.compile(r'{%\s*else\s*%}')
+RE_INCLUDE = re.compile(r'{%\s*include\s*"([\w.]+)"\s%}')
 
 
 class Parser:
@@ -123,6 +131,11 @@ class Parser:
                         #
                 elif self.peek().startswith("{% if "):
                     root.add_child(self._parse_if())
+                elif self.peek().startswith("{% elif "):
+                    if type(root) == IfNode:
+                        return [root] + self._parse_elif()
+                    else:
+                        raise TemplateSyntaxError("elif without an if")
                 elif self.peek().startswith("{% else"):
                     if type(root) == IfNode:
                         self.next()
@@ -156,6 +169,13 @@ class Parser:
         condition = match.group(1)
         node = IfNode(condition)
         return self._parse_group(root=node)
+    
+    def _parse_elif(self):
+        match = re.match(r'{%\s*elif\s*(.+?)\s*%}',self.next())
+        condition = match.group(1)
+        node = IfNode(condition)
+        return self._parse_group(root=node)
+
 
 
     def _parse_text(self):
