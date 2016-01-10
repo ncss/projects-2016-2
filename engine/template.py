@@ -4,7 +4,7 @@ import os
 #from tornado.ncss import ncssbook_log
 
 TEMPLATE_PATH = "templates"
-FOR_REGEX = r'{%\s*for\s*([\w]+)\s*in\s*([\w|\(|\)]+)\s*%}'
+FOR_REGEX = r'{%\s*for\s+([\w]+)\s+in\s+(.+)\s*%}'
 
 class Node:
     """ node base class """
@@ -55,6 +55,20 @@ class IfNode(GroupNode):
             return super().render(context)
         return ""
 
+class ForNode(GroupNode):
+    def __init__(self, forIterator, forList):
+        super().__init__([])
+        
+        self._forIterator = forIterator
+        self._forList = forList
+
+    def render(self, context):
+        context[self._forIterator] = 0
+        result = ""
+        for context[self._forIterator] in eval(self._forList):
+            result += super().render(context)
+        return result
+    
 class TemplateSyntaxError(Exception):
     pass
 
@@ -108,14 +122,8 @@ class Parser:
                     re_match = re.match(r'{%\s*include\s*"([\w.]+)"\s%}',self.next())
                     file_name = os.path.join(TEMPLATE_PATH, re_match.group(1))
                     root.add_child(Parser(tokenize(open(file_name).read())).parse())
-                elif self.peek().startswith(FOR_REGEX):
-                    re_match = re.match(FOR_REGEX, self.next())
-
-                    forIterator = re_match.group(1)
-                    forList = re_match.group(2)
-
-                    #for eval(fprIterator) in eval(forList):
-                        #
+                elif self.peek().startswith("{% for"):
+                    root.add_child(self._parse_for())
                 elif self.peek().startswith("{% if "):
                     root.add_child(self._parse_if())
                 elif self.peek().startswith("{% end "):
@@ -124,6 +132,8 @@ class Parser:
                     else:
                         self.next()
                         return root
+                else:
+                    raise Exception("lrn2code")
             else:
                 
                 # text node
@@ -133,6 +143,17 @@ class Parser:
             # 'end x' statement
             raise TemplateSyntaxError("unmatched for or if")
         return root
+
+    def _parse_for(self):
+        re_match = re.match(FOR_REGEX, self.next())
+        
+        forIterator = re_match.group(1).strip()
+        forList = re_match.group(2).strip()
+        forNode = ForNode(forIterator, forList)
+
+        print("\"" + forIterator + "\"\t\"" + forList + "\"")
+
+        return self._parse_group(root=forNode)
 
     def _parse_if(self):
         match = re.match(r'{%\s*if\s*(.+?)\s*%}',self.next())
@@ -157,4 +178,4 @@ def render(filename, context):
     return Parser(tokens).parse().render(context)
 
 if __name__ == "__main__":
-    print(render("test.html", {'b': 'a'}))
+    print(render("test.html", {'a': 'B', 'b': 'a'}))
