@@ -15,7 +15,7 @@ def profile_handler(response, user_id):
       response.write("Profile ID: " + user_id + file.read())
 
 def template_demo(response):
-    response.write(render("test.html", {}))
+    response.write(render("test.html", {'a': 'B'}))
 
 server = Server()
 server.register(r"/", index_handler)

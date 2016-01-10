@@ -8,7 +8,12 @@
         <h1>This is a header</h1>
        
         <p> {{ 3 + 5 }} </p>
-
+        {% if a == 'B' %}
+        {% if 3 + 2 == 5 %}
+        <p>Yay</p>
+        {% end if %}
+        <p>Something else</p>
+        {% end if %}
         <p> {% include "test2.html" %} </p>
     </body>
 </html>

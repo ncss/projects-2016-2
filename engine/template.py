@@ -44,7 +44,18 @@ class GroupNode(Node):
 
         return result
 
+class IfNode(GroupNode):
+    def __init__(self, condition):
+        super().__init__([])
+        self.condition = condition
 
+    def render(self, context):
+        if eval(self.condition, {}, context):
+            return super().render(context)
+        return ""
+
+class TemplateSyntaxError(Exception):
+    pass
 
 def tokenize(text):
     """
@@ -82,8 +93,10 @@ class Parser:
     def parse(self):
         return self._parse_group(True)
     
-    def _parse_group(self, is_root=False):
-        root = GroupNode([])
+    def _parse_group(self, is_root=False, root=None):
+        if not root:
+            root = GroupNode([])
+
         while not self.end(): # TODO explode if is_root and we see an end if or something
             if self.peek().startswith('{{'):
                 # eval node
@@ -94,11 +107,29 @@ class Parser:
                     re_match = re.match(r'{%\s*include\s*"([\w.]+)"\s%}',self.next())
                     file_name = os.path.join(TEMPLATE_PATH, re_match.group(1))
                     root.add_child(Parser(tokenize(open(file_name).read())).parse())
-
+                elif self.peek().startswith("{% if "):
+                    root.add_child(self._parse_if())
+                elif self.peek().startswith("{% end "):
+                    if is_root:
+                        raise TemplateSyntaxError("%s does not have a corresponding beginning statement"%(self.next()))
+                    else:
+                        self.next()
+                        return root
+                    
             else:
                 # text node
                 root.add_child(self._parse_text())
+        if not is_root:
+            # should never get here - we should have seen an
+            # 'end x' statement
+            raise TemplateSyntaxError("unmatched for or if")
         return root
+
+    def _parse_if(self):
+        match = re.match(r'{%\s*if\s*(.+?)\s*%}',self.next())
+        condition = match.group(1)
+        node = IfNode(condition)
+        return self._parse_group(root=node)
 
 
     def _parse_text(self):
