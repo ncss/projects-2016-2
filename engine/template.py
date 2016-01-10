@@ -3,8 +3,10 @@ import os
 
 #from tornado.ncss import ncssbook_log
 
+TEMPLATE_PATH = "templates"
+
 class Node:
-	""" node base class """
+    """ node base class """
     def __init__(self):
         pass
 
@@ -58,18 +60,15 @@ def tokenize(text):
 
     return tokens
 
-if __name__ == "__main__":
-    import doctest
-    #doctest.testmod()
 
 class Parser:
-	""" parsers tokens into a parse tree to be rendered """
+    """ parsers tokens into a parse tree to be rendered """
     def __init__(self, tokens):
         self._tokens = tokens
         self._position = 0
 
-    def end(self): 
-        return self._position == len(self._tokens[-1])
+    def end(self):
+        return self._position == len(self._tokens)
 
     def peek(self):
         if not self.end():
@@ -82,7 +81,7 @@ class Parser:
 
     def parse(self):
         root = GroupNode([])
-        for token in self._tokens:
+        while not self.end():
             if self.peek().startswith('{{'):
                 # eval node
                 root.add_child(self._parse_eval())
@@ -90,7 +89,7 @@ class Parser:
                 # check tag type
                 if self.peek().startswith("{% include "):
                     re_match = re.match(r'{%\s*include\s*"([\w.]+)"\s%}',self.next())
-                    file_name = re_match.group(1)
+                    file_name = os.path.join(TEMPLATE_PATH, re_match.group(1))
                     root.add_child(Parser(tokenize(open(file_name).read())).parse())
 
             else:
@@ -110,7 +109,9 @@ def render(filename, context):
     render the file "filename" in templates using the dictionary "context"
     as global variables
     """
-    text = open(os.path.join("templates", filename))
+    text = open(os.path.join(TEMPLATE_PATH, filename)).read()
     tokens = tokenize(text)
     return Parser(tokens).parse().render(context)
-	
+
+if __name__ == "__main__":
+    print(render("test.html", {'b': 'a'}))
