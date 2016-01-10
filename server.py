@@ -24,8 +24,7 @@ def input_handler(response):
     response.write(file.read())
 	
 def updateprofile_handler(response):
-  with open("templates/updateprofile.html") as file:
-    response.write(file.read())
+    response.write(render("update_profile.html", {'a': 'B'}))
 
 def template_demo(response):
     response.write(render("test.html", {'a': 'B'}))
