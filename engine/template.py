@@ -4,6 +4,7 @@ import os
 #from tornado.ncss import ncssbook_log
 
 TEMPLATE_PATH = "templates"
+FOR_REGEX = r'{%\s*for\s*([\w]+)\s*in\s*([\w|\(|\)]+)\s*%}'
 
 class Node:
     """ node base class """
@@ -91,8 +92,17 @@ class Parser:
                     re_match = re.match(r'{%\s*include\s*"([\w.]+)"\s%}',self.next())
                     file_name = os.path.join(TEMPLATE_PATH, re_match.group(1))
                     root.add_child(Parser(tokenize(open(file_name).read())).parse())
+                elif self.peek().startswith(FOR_REGEX):
+                    re_match = re.match(FOR_REGEX, self.next())
 
+                    forIterator = re_match.group(1)
+                    forList = re_match.group(2)
+
+                    #for eval(fprIterator) in eval(forList):
+                        #
+                    
             else:
+                
                 # text node
                 root.add_child(self._parse_text())
         return root
