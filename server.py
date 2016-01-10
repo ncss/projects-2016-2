@@ -1,5 +1,8 @@
 from tornado.ncss import Server, ncssbook_log
 
+from engine.template import render
+
+
 def landing_handler(response):
   with open("templates/landing.html") as file:
     response.write(file.read())
