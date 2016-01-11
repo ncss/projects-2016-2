@@ -1,4 +1,5 @@
 from login import User
+from metric import Metric
 
 tim = User(username = "tim", password = "abc123", fname = "Tim", lname = "Dawborn", email = "tim@ncss.edu.au", dob = "2016-01-10", postcode = "1234", country_code = "555", image = "")
 james = User(username = "james", password = "123abc", fname = "James", lname = "Curran", email = "jdog@ncss.edu.au", dob = "2016-01-09", postcode = "1000", country_code = "522", image = "")
