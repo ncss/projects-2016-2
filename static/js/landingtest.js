@@ -1,5 +1,5 @@
 $(function () {
-	$('#container').highcharts({
+	$('#linecontainer').highcharts({
         title: {
             text: "Weekly Activities",
             x: -20 //center

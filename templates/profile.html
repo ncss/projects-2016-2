@@ -147,16 +147,18 @@
         <DIV>
             <H2>Stats</H2>
             <H3>Past Activity</H3>
-            <SCRIPT src="/static/js/landingtest.js"></SCRIPT><!-- change name of chart-->
-            <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            <SCRIPT src="/static/js/landingtest.js"></SCRIPT>
+            <div id="linecontainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
             <!-- graph of past activity - bar graph -->
             <H3>Activities</H3>
 			<SCRIPT>
 				var chart_data = {% safe chart_data_json %};
 			</SCRIPT>
             <SCRIPT src="/static/js/pieactivitychart.js"></SCRIPT>
-			<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+			<div id="piecontainer" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
             <!-- pie chart of activity type -->
+<<<<<<< HEAD
+=======
             <DL>
                 <DT>Total Activities Logged:</DT>
                 <DD>{{total_activities}}</DD>
@@ -195,6 +197,7 @@
                         {% end for %}
                 </TABLE>
             </DIV>
+>>>>>>> 2626d30c4daffed77e31f819b4784b1a58579e86
         </DIV>
         
     {% include "footer.html" %}
