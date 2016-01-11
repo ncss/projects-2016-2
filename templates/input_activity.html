@@ -12,24 +12,22 @@ form {
 }
 
 
-
 </STYLE>
 
-<UL>
+
+<FORM action="/input/" method="POST">
+<UL id="activity_input_list">
 {% for activity in activities.items() %}
     <LI>
-	    {{activity[1].title}}
+	    <H1>{{activity[1].title}}</H1>
 		{% for metric in activity[1].metric_list %}
 		    <P class="input_activity_form">
 		        <LABEL>{{metric["title"]}}</LABEL>
-			    <INPUT type="text" placeholder='{{metric["units"]}}'>
+			    <INPUT type="text" placeholder='{{metric["units"]}}' name="{{activity[0]}}_{{metric["title"]}}">
 		    </P>
 		{% end for %}
     </LI>
 {% end for %}
-
-
-
 </UL>
-
+</FORM>
 {% include "footer.html" %}
