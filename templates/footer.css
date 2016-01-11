@@ -1,0 +1,11 @@
+footer {
+	background-color: #181818;
+	height: 65px; 
+	width: 100%;
+	border: 1px solid black;
+}
+
+a {
+	color: rgb(153, 153, 153);
+	text-decoration: none;
+}
