@@ -30,17 +30,21 @@ def search_handler(response):
 
 def login_handler(response):
   response.write(render("login.html", {'a': 'B'}))
+
+def page404_handler(response):
+  response.write(render("404.html", {}))
 	
 server = Server()
 
 server.register(r"/", landing_handler)
-server.register(r"/home/", home_handler)
-server.register(r"/register/", register_handler)
-server.register(r"/profile/(\d+)/", profile_handler)
-server.register(r"/input/", input_handler)
-server.register(r"/updateprofile/", updateprofile_handler)
-server.register(r"/search/", search_handler)
-server.register(r"/template/", template_demo)
-server.register(r"/login/", login_handler)
+server.register(r"/home", home_handler)
+server.register(r"/register", register_handler)
+server.register(r"/profile/(\d+)", profile_handler)
+server.register(r"/input", input_handler)
+server.register(r"/updateprofile", updateprofile_handler)
+server.register(r"/search", search_handler)
+server.register(r"/template", template_demo)
+server.register(r"/login", login_handler)
+server.register(r"/.*", page404_handler)
 
 server.run()
