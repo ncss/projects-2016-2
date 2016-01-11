@@ -1,15 +1,9 @@
 import sqlite3
 import datetime
 
-conn = sqlite3.
-class Metric:
-    id = None
-    user = None
-    activity = None
-    timestamp = None
-    metric_type = None
-    value = None
-    
+conn = sqlite3.connect("ncssbook.db")
+
+class Metric:  
     def __init__(self, id="", user="", activity="", timestamp="", metric_type="", value=""):
         self.user = user
         self.activity = activity
@@ -18,17 +12,25 @@ class Metric:
         self.id = id
         self.value = value
     
-    #SUBMIT_TIMESTAMP NEEEDED!!
     def save(self):
         submit_timestamp = datetime.datetime.now()
         
         curs = conn.cursor()
         curs.execute('''
-        INSERT INTO metrics(id, user, activity, timestamp, metric_type, value, submit_timestamp)
-            VALUES (?, ?, ?, ?, ? ,?, ?)
-        ''', ())
+        INSERT INTO metrics(user, activity, timestamp, metric_type, value, submit_timestamp)
+            VALUES (?, ?, ?, ? ,?, ?)
+        ''', (self.user, self.activity, self.timestamp, self.metric_type, self.value, submit_timestamp))
         
     def load(self):
-        pass
-    
-    
+        cur = conn.execute('''
+        SELECT *
+        FROM metrics
+        WHERE id = ?
+        ''', (self.id,))
+        row = cur.fetchone()
+        self.user = row["user"]
+        self.activity = row["activity"]
+        self.timestamp = row["timestamp"]
+        self.metric_type = row["metric_type"]
+        self.id = row["id"]
+        self.value = row["value"]

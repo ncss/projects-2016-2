@@ -1,0 +1,35 @@
+
+{% include "header.html" %}
+
+<STYLE>
+form {
+    padding: 
+}
+
+#input_activity_form {
+    text-align: center;
+	padding: 20px;
+}
+
+
+
+</STYLE>
+
+<UL>
+{% for activity in activities.items() %}
+    <LI>
+	    {{activity[1].title}}
+		{% for metric in activity[1].metric_list %}
+		    <P class="input_activity_form">
+		        <LABEL>{{metric["title"]}}</LABEL>
+			    <INPUT type="text" placeholder='{{metric["units"]}}'>
+		    </P>
+		{% end for %}
+    </LI>
+{% end for %}
+
+
+
+</UL>
+
+{% include "footer.html" %}
