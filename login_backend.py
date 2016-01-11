@@ -1,9 +1,10 @@
 import db.login as db
 from urllib.parse import urlencode
 import functools
+import time
 
 def set_login_cookie(response, user_id):
-    response.set_secure_cookie("user_id", str(user_id)) 
+    response.set_secure_cookie("user_id", str(user_id), expires=time.time() + 24 * 3600) 
 
 def get_login_cookie(response):
     user_id = response.get_secure_cookie("user_id")
@@ -39,8 +40,5 @@ def login(response,email,password):
         set_login_cookie(response, user.user_id)
         return user
 
-
-
-
-
-
+def logout():
+    response.clear_cookie("user_id")
