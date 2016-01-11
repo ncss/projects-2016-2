@@ -1,3 +1,4 @@
+import random
 from db.login import User
 from db.metric import Metric
 
@@ -6,12 +7,16 @@ james = User(username = "james", password = "123abc", fname = "James", lname = "
 nicky = User(username = "nicky", password = "nickydabest", fname = "Nicky", lname = "Ringland", email = "nicky@ncss.edu.au", dob = "2016-01-08", postcode = "1337", country_code = "54", image = "")
 simon = User(username = "simon", password = "hihihihi", fname = "Simon", lname = "Shields", email = "simon@ncss.edu.au", dob = "2016-01-04", postcode = "999", country_code = "2", image = "")
 will = User(username = "will", password = "password123", fname = "Will", lname = "Cannings", email = "will@ncss.edu.au", dob = "2015-12-25", postcode = "000", country_code = "752", image = "")
+lochie = User(username = "chokstar", password = "ch0kstar", fname = "Lochie", lname = "Chok", email = "chokstar@chokstarproductions.com", dob = "1999-02-24", postcode = "2153", country_code = "2", image = "")
+belle = User(username = "belle", password = "password", fname = "Belle", lname = "Spizick", email = "belle@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
 
 tim.save()
 james.save()
 nicky.save()
 simon.save()
 will.save()
+lochie.save()
+belle.save()
 
 run_minutes = Metric(user = 0, activity = "Running", timestamp = 1452473361, metric_type = "minutes", value = 10)
 run_minutes2 = Metric(user = 1, activity = "Running", timestamp = 1452473361, metric_type = "minutes", value = 20)

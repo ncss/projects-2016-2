@@ -5,6 +5,7 @@
 {% else %}
 	<html>
 {% end if %}
+
 	<head>
 		<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:700italic' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="reset.css">
@@ -16,18 +17,24 @@
 		<script src="https://code.highcharts.com/modules/exporting.js"></script>
 		<link rel="shortcut icon" href="/static/img/footprinticon.png">
 	</head>
+	
 	<body>
 		<header>
-			<img src="/static/img/footprintlogo.png">
+			<a href="/"><img src="/static/img/footprintlogo.png"></a>
 			<nav>
 				<form id="tfnewsearch" method="get" action="http://www.google.com">
 					<input type="text" class="tftextinput" name="q" size="21" maxlength="120">
 				</form>
+				{% if logged_in %}
 				<a class="active" href="/home/">News Feed</a>
 				<a href="/input/">Input Activity</a>
 				<a href="/profile/">My Profile</a>
+				<a href="/logout/">Log out</a>
+				{% else %}
+				<a href="/register/">Register</a>
 				<a href="/login/">Login</a>
-			</nav>
-		</header>
-		<main>
-
+				{% end if %}
+				
+            </nav>
+        </header>
+	</body>

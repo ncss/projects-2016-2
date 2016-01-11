@@ -87,19 +87,19 @@ Base colour: #ff6600
 }
 
 html {
-  background-color: #ff6600;
+  background-color: #eab68b;
 }
 
 body {
   padding: 20px;
   background-color: white;
-  width: 960px;
+  width: 1100px;
   margin: 0 auto;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
   line-height: 22px;
   -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%; 
+  -webkit-text-size-adjust: 100%;
 }
 
 p {
