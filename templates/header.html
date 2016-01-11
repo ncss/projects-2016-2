@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+
 {% ifexists html_class %}
 	<html class="{{ html_class }}">
 {% else %}
 	<html>
 {% end if %}
+
 	<head>
 		<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:700italic' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="reset.css">
@@ -15,6 +17,7 @@
 		<script src="https://code.highcharts.com/modules/exporting.js"></script>
 		<link rel="shortcut icon" href="/static/img/footprinticon.png">
 	</head>
+	
 	<body>
 		<header>
 			<a href="/"><img src="/static/img/footprintlogo.png"></a>
@@ -31,6 +34,6 @@
 				<a href="/register/">Register</a>
 				<a href="/login/">Login</a>
 				{% end if %}
+				
             </nav>
         </header>
-        <main>
