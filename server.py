@@ -9,7 +9,7 @@ from login_backend import login, requires_login, logout, register, optional_logi
 @optional_login
 def landing_handler(response, user_id):
     if user_id != None:
-        response.redirect('/home/')
+        response.redirect('/profile/')
     else:
         vars = {'logged_in': user_id is not None,
                 'html_class': 'landing'}

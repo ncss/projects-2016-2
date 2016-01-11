@@ -23,11 +23,11 @@
 			<nav>
 					{% if logged_in %}
 					<div id="searchDiv">
-					  <input class="typeahead" type="text" name="q" size="21" maxlength="120" placeholder="Search Users">
+					  <input class="typeahead" id="searchy" type="text" name="q" size="21" maxlength="120" placeholder="Search Users">
 					</div>	
 					{% end if %}
 					
-							<script type="text/javascript">
+					<script type="text/javascript">
 					$.ajax({
 					  type: "GET",
 					  url: "/api/autocomplete?query=",
@@ -68,8 +68,14 @@
 						});		
 					
 						}
-				});		
-		</script>
+				});	
+				
+				$('#searchy').bind('keyup', function(e) {
+				    if ( e.keyCode === 13 ) { // 13 is enter key
+				        window.location.replace("/search/?query=" + $('#searchy').val());
+				    }
+				});	
+				</script>
 		
 				{% if logged_in %}
 				<a class="active" href="/home/">News Feed</a>
