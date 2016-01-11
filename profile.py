@@ -6,5 +6,7 @@ class ProfileHandler:
         self.user.load()
     
     def display_profile(self):
-        user_data = {"email": self.user.email, "full_name": (self.user.fname + ' ' + self.user.lname)}
-        return user_data    
+        user_data = {"email": self.user.email, "full_name": (self.user.fname + ' ' + self.user.lname)
+        
+        }
+        return user_data

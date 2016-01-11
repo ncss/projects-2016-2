@@ -137,6 +137,19 @@ class User:
         return metrics
         
     @staticmethod
+    def check_email_free(email):
+        cur = conn.execute('''
+        SELECT *
+        FROM users
+        WHERE email=?
+        ''', (email,))
+        row = cur.fetchone()
+        if row is None:
+            return True
+        else:
+            return False
+    
+    @staticmethod
     def login(email, password):
         cur = conn.execute('''
         SELECT *

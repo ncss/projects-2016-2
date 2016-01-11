@@ -1,4 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+{% include "header.html" %}
+
+<!--
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,9 +12,12 @@
 <title>Register</title>
 </head>
 
+-->
+
 <body>
 <h1>Register</h1>
 <p>Some stuff about how epic Fitbook is and how it is sooo life changing</p>
+<form action="/newuser/" method="POST">
 <table>
     <tr>
         <td class="f1_label">Email </td><!-- email label-->
@@ -38,5 +46,7 @@
         </td>
     </tr>
 </table>
+</form>
 </body>
-</html>
+
+{% include "footer.html" %}
