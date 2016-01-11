@@ -32,7 +32,7 @@ def login_handler(response):
   response.write(render("login.html", {'a': 'B'}))
 
 def page404_handler(response):
-  response.write(render("page404.html", {}))
+  response.write(render("404.html", {}))
 	
 server = Server()
 
