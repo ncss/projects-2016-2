@@ -2,9 +2,11 @@
     * { box-sizing: border-box; }
 
 .CSSTableGenerator {
+<!--
 	margin:0px;padding:0px;
 	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #000000;
+										-->
 	
 	-moz-border-radius-bottomleft:7px;
 	-webkit-border-bottom-left-radius:7px;
@@ -147,25 +149,9 @@
         <DIV>
             <H2>Stats</H2>
             <H3>Past Activity</H3>
-            <SCRIPT src="/static/js/landingtest.js"></SCRIPT><!-- change name of chart-->
-            <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            <SCRIPT src="/static/js/landingtest.js"></SCRIPT>
+            <div id="linecontainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
             <!-- graph of past activity - bar graph -->
-            <H3>Activities</H3>
-			<SCRIPT>
-				var chart_data = {% safe chart_data_json %};
-			</SCRIPT>
-            <SCRIPT src="/static/js/pieactivitychart.js"></SCRIPT>
-			<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-            <!-- pie chart of activity type -->
-            <DL>
-                <DT>Total Activities Logged:</DT>
-                <DD>{{total_activities}}</DD>
-                <DT>Total Time:</DT>
-                <DD>{{total_time}}</DD>
-                
-                
-                
-            </DL>
         </DIV>
         
         <DIV>
@@ -190,7 +176,6 @@
                             <TD>{{activity[0]}}</TD>
                             <TD>{{activity[1]}}</TD>
                             <TD>{{activity[2]}}</TD>
-                           
                         </TR>
                         {% end for %}
                 </TABLE>

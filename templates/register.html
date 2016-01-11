@@ -7,34 +7,34 @@
 	Footbook provides you with the motivation you need to improve your lifestyle by connecting you with friends that share your passion for fitness. 
 	Together, we can all embrace technology to change the world one step at a time.</p>
 <form id="form" action="/newuser/" method="POST">
-<table>
-    <tr>
-        <td class="f1_label">Email </td><!-- email label-->
-        <td><input type="text" id="email-input" name="email" value="" placeholder="name@email.com" required/><!-- password Input Box -->
-        </td>
-    </tr>
-
-    <tr>
-        <td class="f1_label">Password </td><!-- password label-->
-        <td><input type="password" id="password-input" name="password" value="" placeholder="password" required/><!-- password Input Box -->
-        </td>
-    </tr>
-
-        <td class="f1_label">Name </td><!-- email label-->
-        <td><input type="text" name="name" value="" placeholder="full name" required/><!-- password Input Box -->
-        </td>
-    </tr>
-    <tr>
-    	<td>
-        	<input type = "checkbox" name = "termsconditions" value = "accept" required/> I accept the terms and conditions <br />
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="submit" name="sign up" value="Sign Up" style="font-size:18px;" id = "button" required/><!-- signup button -->
-        </td>
-    </tr>
-</table>
+    <p>
+        <label>Email: 
+            <input type="email" id="email-input" name="email" value="" placeholder="name@email.com" required/>
+        </label>
+    </p>
+    
+    <p>
+        <label>Password: 
+            <input type="password" id="password-input" name="password" value="" placeholder="password" required/>
+        </label>
+    </p>
+    
+    <p>
+        <label>
+            Name: 
+            <input type="text" name="name" value="" placeholder="full name" required/>
+        </label>
+    </p>
+    
+    <p>
+        <label>
+            I accept the terms and conditions
+            <input type="checkbox" name="termsconditions" value="accept" required/>
+        </label>
+    </p>
+    <p>
+        <input type="submit" name="sign up" value="Sign Up" style="font-size:18px;" id = "button" required/>
+    </p>
 </form>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script type="text/javascript">
