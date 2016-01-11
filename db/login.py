@@ -177,7 +177,16 @@ class User:
         row = cur.fetchone()
 		
         return row["value"]
-
+        
+    def get_all_user_aggregate_values(self):
+        cur = conn.execute('''
+        SELECT activity, metric_type, SUM(value) AS value
+        FROM metrics
+        WHERE user = ?
+        GROUP BY activity, metric_type
+        ''', (self.user_id, ))
+        return cur.fetchall()
+        
     @staticmethod
     def find_user_by_fullname(search):
         cur = conn.execute('''
@@ -189,3 +198,4 @@ class User:
         for row in cur:
             results.append(User(row["id"], row["username"], row["password"], row["fname"], row["lname"], row["email"], row["dob"], row["postcode"], row["country_code"], row["image"]))
         return results
+        
