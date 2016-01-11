@@ -1,5 +1,5 @@
 import sqlite3
-import datetime
+import time
 
 conn = sqlite3.connect("ncssbook.db")
 conn.row_factory = sqlite3.Row
@@ -14,7 +14,7 @@ class Metric:
         self.value = value
     
     def save(self):
-        submit_timestamp = datetime.datetime.now()
+        submit_timestamp = int(time.time())
         
         curs = conn.cursor()
         curs.execute('''
