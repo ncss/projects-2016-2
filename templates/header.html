@@ -11,18 +11,18 @@
 	
     <BODY>
 		<HEADER>
-		<ul>
-		<li><IMG src="/static/img/icon.jpg" width="90" height="80"></li>
-		<li><H1 style="font-family: 'Josefin Sans', sans-serif;">Footbook</H1></li>
-		  <li><a class="active" href="#home">News Feed</a></li>
-		  <li><a href="#news">News</a></li>
-			<form id="tfnewsearch" method="get" action="http://www.google.com">
-		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-			</form>
-		<ul style="float:right;list-style-type:none;">
-		  <li><a href="#contact">Input New Activity</a></li>
-		  <li><a href="#contact">My Profile</a></li>
-		  <li><a href="localhost:8888/login">Login</a></li>
+		<ul class="headerui">
+		<li class ="headerli"><IMG src="/static/img/icon.jpg" width="150" height="150"></li>
+		<li class="headerli"><H1 class="headerheading">Footbook</H1></li>
+		<ul class="headerui" style="float:right;list-style-type:none;">
+		<li class="headerli"><a class="active" href="#home">News Feed</a></li>
+		  <li class="headerli"><a href="#contact">Input New Activity</a></li>
+		  <li class="headerli"><a href="#contact">My Profile</a></li>
+		  <li class="headerli"><a href="localhost:8888/login">Login</a></li>
+		  <form id="tfnewsearch" method="get" action="http://www.google.com">
+		  <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+		  </form>
+		</ul>
 		</ul>
 		</HEADER>
     </BODY>
