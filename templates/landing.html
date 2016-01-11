@@ -1,15 +1,17 @@
 <!DOCTYPE HTML />
-<HTML>
-    <BODY>
+
+{% include "header.html" %}
+	
         <FORM action="http://google.com">
             <input type="submit" value="Register" />
         </FORM>
-        <FORM action="http://google.com">
+        <FORM action="/login/">
             <input type="submit" value="Login" />
         </FORM>
         <P>
             About text.
         </P>
-        <IMG src="/static/img/graph.png" alt="graphs and stats" height="300" width="500" />
-    </BODY>
-</HTML>
+        
+		<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+{% include "footer.html" %}
