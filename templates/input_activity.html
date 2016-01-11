@@ -68,8 +68,9 @@
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
 	margin-bottom: -1px;
 	padding-bottom: 1px;
-    border: 2px solid #555;
+    border: 1px solid #ccc;
     border-bottom: 0px;
+		background-color: #f7f7f7;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
 .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
@@ -87,7 +88,8 @@
 }
 
 .ui-state-default {
-    border: 1px solid #DEDEDE;
+    border: 1px solid #eee;
+		background-color: #fcfcfc;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
 }
@@ -103,7 +105,7 @@
 <p>Activity data saved, would you like to make another entry?</p>
 {% end if %}
 <DIV id="tabs">
-	<FORM action="/input/" method="POST">
+	<FORM class="tabbed_form" action="/input/" method="POST">
 		<UL id="activity_input_titles">
 		{% for activity in enumerate(activities.items()) %}
 			<LI>
@@ -121,7 +123,9 @@
 				{% end for %}
 			</DIV>
 		{% end for %}
-		<BUTTON type="submit">Submit</BUTTON>
+		<p>
+		<INPUT type="submit">
+		</p>
 	</FORM>
 </DIV>
 

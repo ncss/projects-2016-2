@@ -309,6 +309,14 @@ form {
   background-color: #f7f7f7;
 }
 
+.tabbed_form {
+  padding-bottom: 20px;
+	margin-bottom: -21px;
+}
+#activity_input_titles {
+ border-bottom: 1px solid #ccc;
+ }
+
 form input:not(.button,[type=checkbox]) {
   display: block;
   width: 90%;
