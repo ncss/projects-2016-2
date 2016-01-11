@@ -27,7 +27,7 @@ def updateprofile_handler(response):
     response.write(render("update_profile.html", {'a': 'B'}))
 
 def template_demo(response):
-    response.write(render("test.html", {'a': 'B'}))
+    response.write(render("test.html", {'a': 'B', 'hello': 'hello'}))
 
 def search_handler(response):
   with open("templates/search.html") as file:
