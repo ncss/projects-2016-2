@@ -2,7 +2,7 @@ from tornado.ncss import Server, ncssbook_log
 from activities import ActivityInputHandler, activity_dict
 from engine.template import render
 from profile import ProfileHandler
-from login_backend import login
+from login_backend import login, requires_login
 
 
 def landing_handler(response):

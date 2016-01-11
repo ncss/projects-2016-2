@@ -1,11 +1,25 @@
 import db.login as db
+from urllib.parse import urlencode
+import functools
 
 def set_login_cookie(response, user_id):
     response.set_secure_cookie("user_id", str(user_id)) 
 
 def get_login_cookie(response):
-    user_id = int(response.get_secure_cookie("user_id"))
-    return user_id
+    user_id = response.get_secure_cookie("user_id")
+    if user_id is not None:
+        return int(user_id)
+    return None
+
+def requires_login(fn):
+    @functools.wraps(fn)
+    def wrapper(response, *args, **kwargs):
+        if get_login_cookie(response) is not None:
+            return fn(response, get_login_cookie(response), *args, **kwargs)
+        else:
+            print(response.request.uri)
+            response.redirect('/login/')
+    return wrapper
 
 def login(response,email,password):
     '''
