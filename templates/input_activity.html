@@ -1,36 +1,79 @@
 {% include "header.html" %}
 
 <STYLE>
-form {
-    padding: 
+.ui-tabs {
+	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+	padding: .2em;
 }
-
-#input_activity_form {
-    text-align: center;
-	padding: 20px;
+.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	padding: .2em .2em 0;
 }
-
-
+.ui-tabs .ui-tabs-nav li {
+	list-style: none;
+	float: left;
+	position: relative;
+	top: 0;
+	margin: 1px .2em 0 0;
+	border-bottom-width: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	float: left;
+	padding: .5em 1em;
+	text-decoration: none;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+	margin-bottom: -1px;
+	padding-bottom: 1px;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
+	cursor: text;
+}
+.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	cursor: pointer;
+}
+.ui-tabs .ui-tabs-panel {
+	display: block;
+	border-width: 0;
+	padding: 1em 1.4em;
+	background: none;
+}
 </STYLE>
+
+<script>
+  $(function() {
+    $("#tabs").tabs();
+  });
+</script>
 
 {% if is_post %}
 <p>Data Added</p>
 {% end if %}
-<FORM action="/input/" method="POST">
-	<UL id="activity_input_list">
-	{% for activity in activities.items() %}
-		<LI>
-			<H1>{{activity[1].title}}</H1>
-			{% for metric in activity[1].metric_list %}
-				<P class="input_activity_form">
-					<LABEL>{{metric["title"]}}</LABEL>
-					<INPUT type="text" placeholder='{{metric["units"]}}' name='{{activity[0]}}_{{metric["title"]}}' />
-				</P>
-			{% end for %}
-		</LI>
-	{% end for %}
-	</UL>
-	<BUTTON type="submit">Submit</BUTTON>
-</FORM>
+<DIV id="tabs">
+	<FORM action="/input/" method="POST">
+		<UL id="activity_input_titles">
+		{% for activity in enumerate(activities.items()) %}
+			<LI>
+				<A href="#tabs-{{activity[0] + 1}}">{{activity[1][0]}}</A>
+			</LI>
+		{% end for %}
+		</UL>
+		{% for activity in enumerate(activities.items()) %}
+			<DIV id="tabs-{{activity[0]}}">
+				{% for metric in activity[1][1].metric_list %}
+					<P class="input_activity_form">
+						<LABEL>{{metric["title"]}}</LABEL>
+						<INPUT type="text" placeholder='{{metric["units"]}}' name='{{activity[0]}}_{{metric["title"]}}' />
+					</P>
+				{% end for %}
+			</DIV>
+		{% end for %}
+		<BUTTON type="submit">Submit</BUTTON>
+	</FORM>
+</DIV>
 
 {% include "footer.html" %}
