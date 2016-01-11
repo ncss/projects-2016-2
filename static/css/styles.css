@@ -356,3 +356,11 @@ form .buttons {
 }
 
 /*fix h1, h2, h3 margin*/
+
+#imageslideshow1{
+    display: block;
+    margin: auto;
+
+    width: auto;
+    max-width: 100%;
+}
