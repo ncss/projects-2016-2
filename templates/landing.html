@@ -1,18 +1,36 @@
-<!DOCTYPE HTML />
-
 {% include "header.html" %}
-<SCRIPT src="/static/js/landingtest.js"> </SCRIPT>
-        
-<!--        <FORM action="http://google.com">
-            <input type="submit" value="Register" />
-        </FORM>
-        <FORM action="/login/">
-            <input type="submit" value="Login" />
-        </FORM>-->
-        <P>
-            About text.
-        </P>
-        
-		<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<script src="/static/js/landingtest.js"></script>
+<script type="text/javascript" src="http://www.linkbuildingservices4sites.com/resources/slide-show.js"></script>  
+<div id="imageslideshow1"></div>
 
+<section id="auth-buttons">
+	<form action="http://google.com">
+		<input type="submit" value="Register" />
+	</form>
+	<form action="/login/">
+		<input type="submit" value="Login" />
+	</form>
+</section>
+
+<p>Cras faucibus non erat sit amet commodo. Maecenas dui lorem, ultrices et erat eget, scelerisque posuere dui. Integer consectetur odio in consectetur posuere. Nunc auctor ante vitae odio maximus feugiat. Donec ac libero eu odio luctus tempus nec in enim. Proin porta, urna quis tincidunt posuere, diam enim eleifend ante, sit amet interdum mi libero vel nunc. Nulla a mi sit amet nunc sodales maximus.</p>
+<p>Sed a odio commodo, convallis enim eget, ullamcorper sapien. Duis congue tellus quis nulla cursus, eget gravida eros euismod. In hac habitasse platea dictumst. Sed in tortor mattis, consectetur purus nec, posuere diam. Donec dictum velit vitae efficitur cursus. Vestibulum vehicula ut sapien rhoncus consectetur. Nullam scelerisque magna nunc. Donec ornare aliquet tellus, id tempus quam hendrerit sed.</p>
+
+
+<!--imgh.us-->
+<script type="text/javascript">  
+var mygallery=new fadeSlideShow({ 
+ wrapperid: "imageslideshow1", //ID of blank DIV on page to house Slideshow
+ dimensions: ["100%", 844], //width/height of gallery in pixels. Should reflect dimensions of largest image (www.2createawebsites.com)
+   imagearray:  [     
+   ["http://i.imgur.com/kdFu304.jpg"],      
+   ["http://i.imgur.com/kK1QpjK.jpg"],       
+   ["http://i.imgur.com/k89cUYQ.jpg"],  ],		  
+  displaymode: {type:'auto', pause:2000, cycles:0, wraparound:false},   
+  persist: false, //remember last viewed slide and recall within same session?   
+  fadeduration: 1600, //transition duration (milliseconds)  
+  descreveal: "ondemand",
+  togglerid: ""
+  })
+ </script>
+		
 {% include "footer.html" %}

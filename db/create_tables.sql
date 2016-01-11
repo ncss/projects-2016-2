@@ -30,8 +30,8 @@ CREATE TABLE following(
 CREATE TABLE metrics(
     id INTEGER PRIMARY KEY,
     user INTEGER references users(id),
-    activity INTEGER references activities(id),
-    metric_type INTEGER references metric_types(id),
+    activity TEXT NOT NULL,
+    metric_type TEXT NOT NULL,
     value REAL NOT NULL,
     timestamp INTEGER NOT NULL,
     submit_timestamp INTEGER NOT NULL

@@ -6,7 +6,8 @@ from login_backend import login, requires_login, logout, register, optional_logi
 
 @optional_login
 def landing_handler(response, user_id):
-    vars = {'logged_in': user_id is not None}
+    vars = {'logged_in': user_id is not None,
+            'html_class': 'landing'}
         
     response.write(render("landing.html", vars))
 
@@ -36,8 +37,10 @@ def input_handler_get(response, user_id):
     
 @requires_login
 def input_handler_post(response, user_id):
-    aih = ActivityInputHandler()
+    aih = ActivityInputHandler(user_id)
     aih.load_activity_data(response)
+    post = True
+    response.write(render("input_activity.html", aih.get_template_data(post)))
 
 @requires_login
 def updateprofile_handler(response, user_id):
