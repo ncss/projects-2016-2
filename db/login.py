@@ -177,3 +177,15 @@ class User:
         row = cur.fetchone()
 		
         return row["value"]
+
+    @staticmethod
+    def find_user_by_fullname(search):
+        cur = conn.execute('''
+        SELECT *
+        FROM users 
+        WHERE fname + ' ' + lname LIKE ?
+        ''', ('%'+search+'%'))
+        results = []
+        for row in cur:
+            results.append(User(row["id"], row["username"], row["password"], row["fname"], row["lname"], row["email"], row["dob"], row["postcode"], row["country_code"], row["image"]))
+        return results
