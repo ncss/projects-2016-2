@@ -5,6 +5,7 @@ from db.metric import Metric
 conn = sqlite3.connect('ncssbook.db')
 conn.row_factory = sqlite3.Row
 
+pics = {'Renee': 'https://en.gravatar.com/userimage/99536151/56db2b8980a14007ae5b8219c3a44285.jpg?size=200', 'Sarah': 'https://en.gravatar.com/userimage/99536151/649c9279cc45d6b259350feb0fb71770.jpg?size=200', 'Simon': 'https://en.gravatar.com/userimage/99536151/66a2b732ba550aca5e255054b9d2a4ba.jpg?size=200', 'Alex': 'https://en.gravatar.com/userimage/99536151/a2da14e006d508e8512993f3647a32a0.jpg?size=200', 'Boran': 'https://en.gravatar.com/userimage/99536151/9657b7fb05d7b5239f30ecb8b50b9e79.jpg?size=200', 'Kassie': 'https://en.gravatar.com/userimage/99536151/72c52ffb6aef95cacd46f35e9872f91d.jpg?size=200', 'Jess': 'https://en.gravatar.com/userimage/99536151/25e16dd9d4f585b60fb1e272c154f7a8.jpg?size=200', 'Ben': 'https://en.gravatar.com/userimage/99536151/9bd1d0dbe694579807f64c168032d55f.jpg?size=200', 'Belle': 'https://en.gravatar.com/userimage/99536151/11d5b7bf40bcd605b147721559b171f3.jpg?size=200', 'Sandra': 'https://en.gravatar.com/userimage/99536151/ac6f0a63d2824676384e8642cf2683f7.jpg?size=200', 'Leonard': 'https://en.gravatar.com/userimage/99536151/3e35f5ea2b7fe99c9963993d8c08cf7f.jpg?size=200', 'Nick': 'https://en.gravatar.com/userimage/99536151/d3812dcd7e238e4885f1f92511fb77f9.jpg?size=200', 'Lindsey': 'https://en.gravatar.com/userimage/99536151/7bb9afe31fcb8c53a946346b2f9d6b1e.jpg?size=200', 'Sid': 'https://en.gravatar.com/userimage/99536151/56c321df945f2b4c81c2230c1073ac47.jpg?size=200', 'Ryan': 'https://en.gravatar.com/userimage/99536151/1476b93b8ba85972473813b424831e12.jpg?size=200', 'Connie': 'https://en.gravatar.com/userimage/99536151/97c3fbf82ef10fcb9c2b0891c2aa47db.jpg?size=200', 'Luke': 'https://en.gravatar.com/userimage/99536151/8fc18881a1731a4d14c4f4b594ff828a.jpg?size=200', 'Lachie': 'https://en.gravatar.com/userimage/99536151/134641ade908ad9e9a9e7027ca49db8a.jpg?size=200', 'Callan': 'https://en.gravatar.com/userimage/99536151/5c9e7c8770bf91ef0e3e78de494ee1a1.jpg?size=200', 'Tom': 'https://en.gravatar.com/userimage/99536151/42c690d1e469882e301a4c2ce20df19c.jpg?size=200', 'Elizabeth': 'https://en.gravatar.com/userimage/99536151/84770c8a088bbf4e826bef3239163613.jpg?size=200'}
 
 class User:
     
@@ -37,7 +38,10 @@ class User:
         self.country_code = row["country_code"]
         self.signup_timestamp = row["signup_timestamp"]
         self.image = row["image"]
-        
+        if self.fname in pics:
+            self.pic = pics[self.fname]
+        else:
+            self.pic = "/static/img/profile_pic.jpg"
 
     def save(self):
         # This needs to update the user object with the returned ID
@@ -196,5 +200,10 @@ class User:
         ''', ('%'+search+'%', ))
         results = []
         for row in cur:
-            results.append(User(row["id"], row["username"], row["password"], row["email"], row["fname"], row["lname"], row["dob"], row["postcode"], row["country_code"], row["image"]))
+            u = User(row["id"], row["username"], row["password"], row["email"], row["fname"], row["lname"], row["dob"], row["postcode"], row["country_code"], row["image"])
+            if u.fname in pics:
+                u.pic = pics[u.fname]
+            else:
+                u.pic = "/static/img/profile_pic.jpg"
+            results.append(u)
         return results

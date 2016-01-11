@@ -62,6 +62,11 @@ class ActivityInputHandler:
             for metric in activity.metric_list:
                 field_name = activity_name + "_" + metric["title"]
                 current_field = request.get_field(field_name)
+                try:
+                    current_field = float(current_field)
+                except ValueError:
+                    continue
+
                 if current_field != None:
                     m = Metric(user=self.user_id, activity=activity_name, timestamp=time_stamp, metric_type=metric["units"], value=current_field)
                     m.save()
