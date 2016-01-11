@@ -1,12 +1,12 @@
 import sqlite3
 import time
 
-conn = sqlite3.connect('ncssbook.db')
+conn = sqlite3.connect('db/ncssbook.db')
 
 
 class User:
     
-    def __init__(self, user_id=None, username="", password="", fname="", lname="", email="", dob="", postcode="", country_code="", image=""):
+    def __init__(self, user_id=None, username="", password="", email="", fname="", lname="", dob="", postcode="", country_code="", signup_timestamp=0, image=""):
         self.user_id = user_id
         self.username = username
         self.password = password
@@ -53,7 +53,7 @@ class User:
         ''', (username, password))
         row = cur.fetchone()
         if row is not None:
-             return User(**row)
+            return User(*row)
         else:
              return None
 
