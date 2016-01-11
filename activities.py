@@ -29,19 +29,15 @@ activity_dict = {
     ]),
     "soccer": Activity("Soccer","Kicking a ball","futbol-o",[
         {"title": "Duration", "units": "minutes"},
-        {"title": "Distance", "units": "metres"},
     ]),
     "push_ups": Activity("Push ups","Pushing up","arrows-v",[
-        {"title": "Duration", "units": "minutes"},
-        {"title": "Distance", "units": "metres"},
+        {"title": "Count", "units": "amount"},
     ]),
     "sit_ups": Activity("Sit ups","Sitting up","arrow-h",[
-        {"title": "Duration", "units": "minutes"},
-        {"title": "Distance", "units": "metres"},
+        {"title": "Count", "units": "amount"},
     ]),
     "other": Activity("Other","Enter own one","question",[
-        {"title": "Duration", "units": "minutes"},
-        {"title": "Distance", "units": "metres"},
+        {"title": "Duration", "units": "minutes"}
     ]),
     }
     
@@ -52,5 +48,5 @@ class ActivityInputHandler:
         self.activities = activities
     
     def get_template_data(self):
-        return {"test": "testval"} #{"activities": self.activities}
+        return {"activities": self.activities}
         
