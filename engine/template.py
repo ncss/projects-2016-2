@@ -1,11 +1,19 @@
 import re
 import os
+import functools
+import html
 
 #from tornado.ncss import ncssbook_log
 
 CRASH_ON_ERROR = False
 TEMPLATE_PATH = "templates"
 FOR_REGEX = r'{%\s*for\s+([\w]+)\s+in\s+(.+)\s*%}'
+
+def escape(fn):
+    @functools.wraps(fn)
+    def magic(*args, **kwargs):
+        return html.escape(fn(*args, **kwargs))
+    return magic
 
 class Node:
     """ node base class """
@@ -28,8 +36,15 @@ class PythonNode(Node):
     def __init__(self,content):
         self.content = content
 
+    @escape
     def render(self, context):
-        return str(eval(self.content, {}, context))
+        try:
+            return str(eval(self.content, {}, context))
+        except Exception as e:
+            if CRASH_ON_ERROR:
+                raise TemplateRenderError(e)
+            else:
+                return "<strong>Error while evaluating python code {}: {}</strong>".format(self.content, e)
 
 class GroupNode(Node):
     """ contains multiple nodes"""
@@ -42,7 +57,6 @@ class GroupNode(Node):
 
     def render(self, context):
         result = ''
-        print(self.children)
         for i in self.children:
             result += i.render(context)
 
@@ -54,8 +68,11 @@ class IfNode(GroupNode):
         self.condition = condition
 
     def render(self, context):
-        if eval(self.condition, {}, context):
-            return super().render(context)
+        try:
+            if eval(self.condition, {}, context):
+                return super().render(context)
+        except Exception as e:
+            return "<strong>Error while evaluating if/elif/else condition '{}' - {}</strong>".format(self.condition, e)
         return ""
 
 class ForNode(GroupNode):
@@ -66,12 +83,25 @@ class ForNode(GroupNode):
         self._forList = forList
 
     def render(self, context):
-        context[self._forIterator] = 0
         result = ""
-        for context[self._forIterator] in eval(self._forList):
+        for context[self._forIterator] in eval(self._forList, {}, context):
             result += super().render(context)
         return result
-    
+
+class SafeNode(Node):
+    def __init__(self, expr):
+        self.expr = expr
+
+    def render(self, context):
+        try:
+            return str(eval(self.expr, {}, context))
+        except Exception as e:
+            if CRASH_ON_ERROR:
+                raise TemplateRenderError(e)
+            else:
+                return "<strong>Error while safe-evaluating python code {}: {}</strong>".format(self.expr, e)
+
+
 class TemplateSyntaxError(Exception):
     pass
 
@@ -86,7 +116,6 @@ def tokenize(text):
     ['{{ include test.html }}', ' blah ', '{% if yes %}']
     """
     tokens = re.split(r'({%.*?%})|({{.*?}})', text)
-    #print(tokens)
 
     tokens = [x for x in tokens if x]
 
@@ -117,9 +146,9 @@ class Parser:
 
     def parse(self):
         return self._parse_group(True)
-    
+
     def _parse_group(self, is_root=False, root=None):
-        
+
         elses = []
 
         if not root:
@@ -134,7 +163,13 @@ class Parser:
                 if self.peek().startswith("{% include "):
                     re_match = re.match(r'{%\s*include\s*"([\w.]+)"\s%}',self.next())
                     file_name = os.path.join(TEMPLATE_PATH, re_match.group(1))
-                    root.add_child(Parser(tokenize(open(file_name).read())).parse())
+                    try:
+                        root.add_child(Parser(tokenize(open(file_name).read())).parse())
+                    except Exception as e:
+                        if CRASH_ON_ERROR:
+                            raise e
+                        else:
+                            root.add_child([TextNode("<strong>Error while including file {}: {}</strong>".format(file_name, e))])
                 elif self.peek().startswith("{% for"):
                     root.add_child(self._parse_for())
                 elif self.peek().startswith("{% if "):
@@ -143,7 +178,11 @@ class Parser:
                     if type(root) == IfNode:
                         return [root] + self._parse_elif()
                     else:
-                        raise TemplateSyntaxError("elif without an if")
+                        if CRASH_ON_ERROR:
+                            raise TemplateSyntaxError("elif without an if")
+                        else:
+                            root.add_child([TextNode("<strong>elif '%s' has no matching if statement</strong>".format(self.peek()))])
+                            self.next()
                 elif self.peek().startswith("{% else"):
                     if type(root) == IfNode:
                         self.next()
@@ -151,35 +190,59 @@ class Parser:
                         node = IfNode(condition)
                         elses += (self._parse_group(root=node))
                         return [root] + elses
-                        
+                    else:
+                        if CRASH_ON_ERROR:
+                            raise TemplateSyntaxError("else without an if")
+                        else:
+                            root.add_child([TextNode("<strong>else has no matching if statement</strong>")])
+                            self.next()
 
                 elif self.peek().startswith("{% end "):
                     if is_root:
-                        raise TemplateSyntaxError("%s does not have a corresponding beginning statement"%(self.next()))
+                        if CRASH_ON_ERROR:
+                            raise TemplateSyntaxError("{} does not have a corresponding beginning statement".format(self.next()))
+                        else:
+                            root.add_child([TextNode("<strong>'{}' has no matching 'for' or 'if' statement</strong>".format(self.peek()))])
+                            self.next()
                     else:
                         self.next()
                         if type(root) == IfNode:
                             return [root] + elses
                         return [root]
+                elif self.peek().startswith("{% safe "):
+                    root.add_child(self._parse_safe())
                 else:
-                    raise Exception("lrn2code")
+                    if CRASH_ON_ERROR:
+                        raise TemplateSyntaxError("invalid {% ... %} statement: {}".format(self.next()))
+                    else:
+                        root.add_child([TextNode("<strong>WARNING: Invalid instruction - {}</strong>".format(self.next()))])
             else:
                 # text node
                 root.add_child(self._parse_text())
         if not is_root:
             # should never get here - we should have seen an
             # 'end x' statement
-            raise TemplateSyntaxError("unmatched for or if")
+            if CRASH_ON_ERROR:
+                raise TemplateSyntaxError("unmatched for or if")
+            else:
+                msg = "<strong>unmatched {} (looks like \"{}\") - need an 'end {}'"
+                if type(root) == IfNode:
+                    msg = msg.format("if/elif/else", "if {}".format(root.condition), "if")
+                else:
+                    msg = msg.format("for", "for {} in {}".format(root._forIterator, root._forList), "for")
+
+                root.add_child([TextNode(msg)])
+                z = root.children
+                root.children = []
+                return [root] + z
         return [root]
 
     def _parse_for(self):
         re_match = re.match(FOR_REGEX, self.next())
-        
+
         forIterator = re_match.group(1).strip()
         forList = re_match.group(2).strip()
         forNode = ForNode(forIterator, forList)
-
-        print("\"" + forIterator + "\"\t\"" + forList + "\"")
 
         return self._parse_group(root=forNode)
 
@@ -188,7 +251,7 @@ class Parser:
         condition = match.group(1)
         node = IfNode(condition)
         return self._parse_group(root=node)
-    
+
     def _parse_elif(self):
         match = re.match(r'{%\s*elif\s*(.+?)\s*%}',self.next())
         condition = match.group(1)
@@ -199,6 +262,9 @@ class Parser:
 
     def _parse_text(self):
         return [TextNode(self.next())]
+
+    def _parse_safe(self):
+        return [SafeNode(self.next().replace('{%', '').replace('%}', '').strip()[4:])]
 
     def _parse_eval(self):
         return [PythonNode(self.next().replace('{{', '').replace('}}', ''))]
@@ -213,4 +279,4 @@ def render(filename, context):
     return Parser(tokens).parse()[0].render(context)
 
 if __name__ == "__main__":
-    print(render("test.html", {'a': 'B', 'b': 'a'}))
+    print(render("test.html", {'a': 'B', 'b': 'a', 'hello':'hello'}))
