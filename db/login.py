@@ -1,7 +1,8 @@
 import sqlite3
 import time
 
-conn = sqlite3.connect('db/ncssbook.db')
+conn = sqlite3.connect('ncssbook.db')
+conn.row_factory = sqlite3.Row
 
 
 class User:
@@ -22,8 +23,8 @@ class User:
         cur = conn.execute('''
             SELECT *
             FROM users
-            WHERE user_id = ?
-            ''', (user_id,))
+            WHERE id = ?
+            ''', (self.user_id,))
         row = cur.fetchone()
         self.username = row["username"]
         self.password = row["password"]

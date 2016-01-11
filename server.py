@@ -1,6 +1,7 @@
 from tornado.ncss import Server, ncssbook_log
 from activities import ActivityInputHandler, activity_dict
 from engine.template import render
+from profile import ProfileHandler
 
 
 def landing_handler(response):
@@ -8,12 +9,13 @@ def landing_handler(response):
 
 def home_handler(response):
     response.write(render("feed.html", {'a': 'B'}))
-	
+    
 def register_handler(response):
     response.write(render("register.html", {'a': 'B'}))
 
 def profile_handler(response, user_id):
-    response.write(render("profile.html", {'user_id': 51}))
+    poh = ProfileHandler(user_id)
+    response.write(render("profile.html", poh.display_profile()))
 
 def input_handler(response):
     aih = ActivityInputHandler(activity_dict)
@@ -30,7 +32,7 @@ def search_handler(response):
 
 def login_handler(response):
   response.write(render("login.html", {'a': 'B'}))
-	
+    
 server = Server()
 
 server.register(r"/", landing_handler)
