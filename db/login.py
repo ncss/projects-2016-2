@@ -183,8 +183,8 @@ class User:
         cur = conn.execute('''
         SELECT *
         FROM users 
-        WHERE fname + ' ' + lname LIKE ?
-        ''', ('%'+search+'%'))
+        WHERE fname || ' ' || lname LIKE ?
+        ''', ('%'+search+'%', ))
         results = []
         for row in cur:
             results.append(User(row["id"], row["username"], row["password"], row["fname"], row["lname"], row["email"], row["dob"], row["postcode"], row["country_code"], row["image"]))
