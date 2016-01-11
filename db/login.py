@@ -154,3 +154,14 @@ class User:
         cur = conn.execute('''
         DELETE FROM users WHERE username = ?''', (username))
         conn.commit()
+		
+	
+	def get_user_aggregate_value(self, activity, metric_type):
+		cur = conn.execute('''
+		SELECT SUM(value)
+		FROM metrics
+		WHERE user_id = ? AND activity = ? AND metric_type = ?
+		''', (self.user_id, activity, metric_type))
+		row = cur.fetchone()
+		
+		return row["value"]
