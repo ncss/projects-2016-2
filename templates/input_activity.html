@@ -1,3 +1,6 @@
+
+{% include "header.html" %}
+
 <STYLE>
 form {
     padding: 
@@ -14,26 +17,19 @@ form {
 
 <UL>
 {% for activity in activities.items() %}
-<P>{{activity[0]}}, {{activity[1]}}</P>
+    <LI>
+	    {{activity[1].title}}
+		{% for metric in activity[1].metric_list %}
+		    <P class="input_activity_form">
+		        <LABEL>{{metric["title"]}}</LABEL>
+			    <INPUT type="text" placeholder='{{metric["units"]}}'>
+		    </P>
+		{% end for %}
+    </LI>
 {% end for %}
 
-    <LI></LI>
+
+
 </UL>
-<H1>Insert title here</H1>
-<FORM action="input_activity.html">
-    <FIELDSET>
-	    <P id="input_activity_form">
-		    <LABEL>Duration:</LABEL>
-			<INPUT type="text" placeholder="minutes">
-		</P>
-		<P id="input_activity_form">
-			<LABEL>Distance:</LABEL>
-			<INPUT type="text" placeholder="metres">
-		</P>
-		<P id="input_activity_form">
-			<LABEL>Count:</LABEL>
-			<INPUT type="text" placeholder="amount">
-		</P>
-	</FIELDSET>
-	<INPUT type="submit" value="submit">
-</FORM>
+
+{% include "footer.html" %}
