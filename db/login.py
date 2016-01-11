@@ -1,5 +1,6 @@
 import sqlite3
 import time
+from db.metric import Metric
 
 conn = sqlite3.connect('ncssbook.db')
 conn.row_factory = sqlite3.Row
@@ -54,9 +55,8 @@ class User:
             FROM metrics
             WHERE ? = user
             ''', (self.user_id,))
-            activities = []
+        activities = []
             
-        ##TODO: Create an activity object rather than send the raw row
         for row in cur:
             activities.append(row["activity"])
         
@@ -79,11 +79,11 @@ class User:
         return metrics
     
     #Returns all of the metrics for a specific metric
-    def get_activity_metric(self, activity):
+    def get_activity_metrics(self, activity):
         if self.user_id is None:
             raise Exception("No user ID defined. Cannot get metrics for activity " +  activity)
-        
-        curr = conn.execute('''
+       
+        cur = conn.execute('''
         SELECT * 
         FROM metrics
         WHERE user = ? AND activity = ?
