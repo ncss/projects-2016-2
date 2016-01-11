@@ -74,6 +74,20 @@ class IfNode(GroupNode):
         except Exception as e:
             return "<strong>Error while evaluating if/elif/else condition '{}' - {}</strong>".format(self.condition, e)
         return ""
+        
+class IfExistsNode(GroupNode):
+    def __init__(self, variable, invert = False):
+        super().__init__([])
+        self.variable = variable
+        self.invert = invert
+
+    def render(self, context):
+        try:
+            if (self.invert and self.variable not in context) or (not self.invert and self.variable in context):
+                return super().render(context)
+        except Exception as e:
+            return "<strong>Error while evaluating ifexists/else variable '{}' - {}</strong>".format(self.variable, e)
+        return ""
 
 class ForNode(GroupNode):
     def __init__(self, forIterator, forList):
@@ -174,6 +188,8 @@ class Parser:
                     root.add_child(self._parse_for())
                 elif self.peek().startswith("{% if "):
                     root.add_child(self._parse_if())
+                elif self.peek().startswith("{% ifexists "):
+                    root.add_child(self._parse_if_exists())
                 elif self.peek().startswith("{% elif "):
                     if type(root) == IfNode:
                         return [root] + self._parse_elif()
@@ -188,6 +204,11 @@ class Parser:
                         self.next()
                         condition = "not (" + root.condition +" )"
                         node = IfNode(condition)
+                        elses += (self._parse_group(root=node))
+                        return [root] + elses
+                    elif type(root) == IfExistsNode:
+                        self.next()
+                        node = IfExistsNode(root.variable, invert=True)
                         elses += (self._parse_group(root=node))
                         return [root] + elses
                     else:
@@ -250,6 +271,12 @@ class Parser:
         match = re.match(r'{%\s*if\s*(.+?)\s*%}',self.next())
         condition = match.group(1)
         node = IfNode(condition)
+        return self._parse_group(root=node)
+        
+    def _parse_if_exists(self):
+        match = re.match(r'{%\s*ifexists\s*(.+?)\s*%}',self.next())
+        variable = match.group(1)
+        node = IfExistsNode(variable)
         return self._parse_group(root=node)
 
     def _parse_elif(self):
