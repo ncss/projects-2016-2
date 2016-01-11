@@ -78,14 +78,13 @@ class IfNode(GroupNode):
 class ForNode(GroupNode):
     def __init__(self, forIterator, forList):
         super().__init__([])
-
+        
         self._forIterator = forIterator
         self._forList = forList
 
     def render(self, context):
-        context[self._forIterator] = 0
         result = ""
-        for context[self._forIterator] in eval(self._forList):
+        for context[self._forIterator] in eval(self._forList, {}, context):
             result += super().render(context)
         return result
 
@@ -280,4 +279,4 @@ def render(filename, context):
     return Parser(tokens).parse()[0].render(context)
 
 if __name__ == "__main__":
-    print(render("test.html", {'a': 'B', 'b': 'a'}))
+    print(render("test.html", {'a': 'B', 'b': 'a', 'hello':'hello'}))
