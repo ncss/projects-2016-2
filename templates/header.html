@@ -15,20 +15,22 @@
 		<script src="https://code.highcharts.com/modules/exporting.js"></script>
 		<script src="http://twitter.github.com/typeahead.js/releases/latest/typeahead.bundle.min.js"></script>		
 		<link rel="shortcut icon" href="/static/img/footprinticon.png">
+		
 	</head>
 	<body>
 		<header>
-			<img src="/static/img/footprintlogo.png">
+			<a href="/"><img src="/static/img/footprintlogo.png"></a>
 			<nav>
+					{% if logged_in %}
 					<div id="searchDiv">
-					  <input class="typeahead" type="text" placeholder="Search Users">
+					  <input class="typeahead" type="text" name="q" size="21" maxlength="120" placeholder="Search Users">
 					</div>	
-			<nav>		
-				
-				<script type="text/javascript">
+					{% end if %}
+					
+							<script type="text/javascript">
 					$.ajax({
 					  type: "GET",
-					  url: "api/autocomplete?query=",
+					  url: "/api/autocomplete?query=",
 					  cache: false,
 					  success: function(peopleJSON){
 						console.log(peopleJSON)					
@@ -67,8 +69,8 @@
 					
 						}
 				});		
-				</script>
-				
+		</script>
+		
 				{% if logged_in %}
 				<a class="active" href="/home/">News Feed</a>
 				<a href="/input/">Input Activity</a>
