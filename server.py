@@ -4,37 +4,34 @@ from engine.template import render
 
 
 def landing_handler(response):
-  with open("templates/landing.html") as file:
-    response.write(file.read())
+  response.write(render("landing.html", {'a': 'B'}))
 
 def home_handler(response):
-  with open("templates/home.html") as file:
-    response.write(file.read())
-	
+  response.write(render("feed.html", {'a': 'B'}))
+
 def register_handler(response):
-  with open("templates/register.html") as file:
-    response.write(file.read())
+  response.write(render("register.html", {'a': 'B'}))
 
 def profile_handler(response, user_id):
-    with open("templates/profile.html") as file:
-      response.write("Profile ID: " + user_id + file.read())
-	  
+  response.write(render("profile.html", {'a': 'B'}))
+
 def input_handler(response):
-  with open("templates/input.html") as file:
-    response.write(file.read())
+  response.write(render("input.html", {'a': 'B'}))
 	
 def updateprofile_handler(response):
-  with open("templates/updateprofile.html") as file:
-    response.write(file.read())
+  response.write(render("updateprofile.html", {'a': 'B'}))
 
 def template_demo(response):
-    response.write(render("test.html", {'a': 'B'}))
+  response.write(render("test.html", {'a': 'B'}))
 
 def search_handler(response):
-  with open("templates/search.html") as file:
-    response.write(file.read())
+  response.write(render("search_results.html", {'a': 'B'}))
+
+def login_handler(response):
+  response.write(render("login.html", {'a': 'B'}))
 	
 server = Server()
+
 server.register(r"/", landing_handler)
 server.register(r"/home/", home_handler)
 server.register(r"/register/", register_handler)
@@ -43,5 +40,6 @@ server.register(r"/input/", input_handler)
 server.register(r"/updateprofile/", updateprofile_handler)
 server.register(r"/search/", search_handler)
 server.register(r"/template/", template_demo)
+server.register(r"/login/", login_handler)
 
 server.run()
