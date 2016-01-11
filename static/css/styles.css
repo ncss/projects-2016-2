@@ -280,16 +280,12 @@ ol {
 }
 
 form {
-  /*width: 960px;*/
-  border: 1px solid #ff6600;
-  border-radius: 5px;
   background-color: #f7f7f7;
-  padding: 40px;
 }
 
 form input:not(.button) {
   display: block;
-  width: 480px;
+  width: 90%;
   margin: 0 auto;
   padding: 10px;
   margin-bottom: 20px;
@@ -363,7 +359,9 @@ form .buttons {
   margin-top: 10px;
 }
 
-
+#auth-buttons form {
+  border: none
+}
 
 
 /* ----------------------------------------------- */
@@ -449,10 +447,26 @@ html.landing {
 		z-index: 1;
 	}
 	
-		#auth-buttons {
+	.landingintro {
+	width: 1100px;
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.5em;
+	line-height: 150%;
+	}
+		.auth-buttons {
 			text-align: center;
-			width: 700px;
-			margin: 0px auto 30px auto;
+			width: 49%;
+			margin: 0 auto 0 auto;
+			display: inline-block;
+		}
+		
+		#auth-buttons-id {
+			margin: 50px auto 0 auto;
+			width: 1100px;
+			text-align: center;
+			
 		}
 	
 			html.landing body main form {

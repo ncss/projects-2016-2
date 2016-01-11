@@ -1,18 +1,21 @@
 {% include "header.html" %}
 <script src="/static/js/landingtest.js"></script>
 <script type="text/javascript" src="http://www.linkbuildingservices4sites.com/resources/slide-show.js"></script>  
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <div id="imageslideshow1"></div>
 
+<div class="landingintro">
 <p>Welcome to Footbook, a unique fitness-orientated social networking site that allows you to effortlessly connect to all of your friends. 
 Our new and exciting site supports many features, such as updated graphs that help you keep track of your personal goals, an easy-to-use search function to instantly find and follow your friends, 
 and a scrollable newsfeed to view the fitness achievements of those you follow.</p>
 <p>Register now to join us on the journey to a new and healthier you!</p>
+</div>
 
-<section id="auth-buttons">
-	<form action="/register/">
+<section id="auth-buttons-id">
+	<form action="/register/" class="auth-buttons">
 		<input type="submit" value="Register" />
 	</form>
-	<form action="/login/">
+	<form action="/login/" class="auth-buttons">
 		<input type="submit" value="Login" />
 	</form>
 </section>
