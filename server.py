@@ -29,8 +29,9 @@ def input_handler(response, user_id):
 def updateprofile_handler(response):
     response.write(render("update_profile.html", {'a': 'B'}))
 
-def template_demo(response):
-    response.write(render("test.html", {'a': 'B'}))
+@requires_login
+def template_demo(response, user_id):
+    response.write(render("test.html", {'a': 'B', 'user_id': user_id, 'hello': 'hello'}))
 
 def search_handler(response):
     response.write(render("search_results.html", {'a': 'B'}))
