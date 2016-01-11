@@ -37,16 +37,16 @@ class Metric:
         self.id = row["id"]
         self.value = row["value"]
 		
-	@staticmethod	
-	def get_aggregate_value(activity, metric_type):
-		cur = conn.execute('''
-		SELECT SUM(value)
+    @staticmethod	
+    def get_aggregate_value(activity, metric_type):
+        cur = conn.execute('''
+		SELECT SUM(value) AS value
 		FROM metrics
 		WHERE activity = ? AND metric_type = ?
-		''', (activity, metric_type))
-		row = cur.fetchone()
-		
-		return row["value"]
+        ''', (activity, metric_type))
+        row = cur.fetchone()
+	
+        return row["value"]
 	
 	
 	
