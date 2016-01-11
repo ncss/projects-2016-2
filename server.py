@@ -1,23 +1,24 @@
 from tornado.ncss import Server, ncssbook_log
-
+from activities import ActivityInputHandler, activity_dict
 from engine.template import render
 
 
 def landing_handler(response):
-  response.write(render("landing.html", {'a': 'B'}))
+    response.write(render("landing.html", {'a': 'B'}))
 
 def home_handler(response):
-  response.write(render("feed.html", {'a': 'B'}))
-
+    response.write(render("feed.html", {'a': 'B'}))
+	
 def register_handler(response):
-  response.write(render("register.html", {'a': 'B'}))
+    response.write(render("register.html", {'a': 'B'}))
 
 def profile_handler(response, user_id):
-  response.write(render("profile.html", {'a': 'B'}))
+    response.write(render("profile.html", {'user_id': 51}))
 
 def input_handler(response):
-  response.write(render("input_activity.html", {'a': 'B'}))
-	
+    aih = ActivityInputHandler(activity_dict)
+    response.write(render("input_activity.html", aih.get_template_data()))
+
 def updateprofile_handler(response):
   response.write(render("update_profile.html", {'a': 'B'}))
 
