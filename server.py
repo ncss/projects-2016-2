@@ -2,7 +2,9 @@ from tornado.ncss import Server, ncssbook_log
 from activities import ActivityInputHandler
 from engine.template import render
 from profile import ProfileHandler
+from db.login import User
 from login_backend import login, requires_login, logout, register
+import json
 
 
 def landing_handler(response):
@@ -44,7 +46,8 @@ def template_demo(response, user_id):
     response.write(render("test.html", {'a': 'B', 'user_id': user_id, 'hello': 'hello'}))
 
 def search_handler(response):
-    response.write(render("search_results.html", {'a': 'B'}))
+    ary = User.find_user_by_fullname(response.get_field('query'))
+    response.write(render("search_results.html", {'results': ary}))
 
 def login_handler(response):
     response.write(render("login.html", {'a': 'B'}))
@@ -75,6 +78,13 @@ def newuser_handler(response):
         response.redirect('/register/?error=no_tc')
     return register(response, email, password, name)
 
+def search_autocomplete_handler(response):
+    ary = User.find_user_by_fullname(response.get_field('query'))
+    res = []
+    response.set_header("Content-Type", "application/json")
+    for el in ary:
+        res.append(el.fname + ' ' + el.lname)
+    response.write(json.dumps(res))
 
 server = Server()
 
@@ -91,6 +101,7 @@ server.register(r"/login/", login_handler)
 server.register(r"/authenticate/", auth_handler)
 server.register(r"/logout/", logout_handler)
 server.register(r"/newuser/", newuser_handler)
+server.register(r"/api/autocomplete", search_autocomplete_handler)
 server.register(r"/.*", page404_handler)
 
 server.run()
