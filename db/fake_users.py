@@ -11,3 +11,13 @@ james.save()
 nicky.save()
 simon.save()
 will.save()
+
+run_minutes = Metric(user = 0, activity = "Running", timestamp = 1452473361, metric_type = "minutes", value = 10)
+run_metres = Metric(user = 0, activity = "Running", timestamp = 1452473361, metric_type = "metres", value = 1200)
+walk_minutes = Metric(user = 1, activity = "Walking", timestamp = 1452474361, metric_type = "minutes", value = 39)
+walk_metres = Metric(user = 1, activity = "Walking", timestamp = 1452474361, metric_type = "metres", value = 1640)
+cycling_minutes = Metric(user = 1, activity = "Cycling", timestamp = 1452475652, metric_type = "minutes", value = 40)
+cycling_metres = Metric(user = 1, activity = "Cycling", timestamp = 1452475652, metric_type = "metres", value = 40)
+swimming_minutes = Metric(user = 2, activity = "Swimming", timestamp = 1452575652, metric_type = "minutes", value = 20)
+swimming_metres = Metric(user = 2, activity = "Swimming", timestamp = 1452575652, metric_type = "metres", value = 200)
+
