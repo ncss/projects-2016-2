@@ -1,6 +1,6 @@
 from db.login import User
 import json, databasetocharts
-
+from collections import defaultdict
 class ProfileHandler:
     def __init__(self, user_id):
         self.user = User(user_id)
@@ -12,10 +12,34 @@ class ProfileHandler:
         for activity, sum in aggregate_activity_data.items():
             real_chart_data.append({
             "name": activity,
-            "y": sum})            
+            "y": sum})    
+
+        metrics = self.user.get_all_metrics()
+            
+        activity_dict = defaultdict(list)
+        activity_list = []
+        metrics_list = []
+        for metric in metrics:
+            metric_list = []
+            metric_list.append(metric.activity)
+            metric_list.append(metric.timestamp)
+            metric_list.append(str(metric.value)+ " " + str(metric.metric_type))
+            activity_dict[metric.activity].append(metric_list)
+        print(activity_dict)
+        
+        for activity in activity_list:
+            activity_dict[activity] = activity_dict[activity].sort(key=lambda x:x[1].casefold())
+            
+        activities_list = []
+        for activity_list in activity_dict:
+            activities_list.append(activity_dict[activity_list])
+            
+        activities_list.sort(key=lambda x:x[1].casefold())
+                
         user_data = {
             "email": self.user.email,
             "full_name": (self.user.fname + ' ' + self.user.lname),
-            "chart_data_json": json.dumps(real_chart_data)
+            "chart_data_json": json.dumps(real_chart_data),
+            "activities":activities_list
         }
         return user_data
