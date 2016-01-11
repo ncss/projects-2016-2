@@ -32,28 +32,47 @@
             <!-- pie chart of activity type -->
             <DL>
                 <DT>Total Activities Logged:</DT>
-                <DD>Result</DD>
+                <DD>{{total_activities}}</DD>
                 <DT>Total Time:</DT>
-                <DD>Result</DD>
+                <DD>{{total_time}}</DD>
+                
+                {% if total_km_run != 0 %}
                 <DT>Total Km's Run:</DT>
-                <DD>Result</DD>
+                <DD>{{total_km_run)}}</DD>
+                {% end if %}
+                
+                {% if total_km_cycled != 0 %}
                 <DT>Total Km's Cycled:</DT>
-                <DD>Result</DD>
-                <DT>Total Km's Swum</DT>
-                <DD>Result</DD>
+                <DD>{{total_km_cycled}}</DD>
+                {% end if %}
+                
+                {% if total_km_swum != 0 %}
+                <DT>Total Km's Swum:</DT>
+                <DD>{{total_km_swum}}</DD>
+                {% end if %}
+                
+                {% if total_km_walked != 0 %}
                 <DT>Total Km's Walked:</DT>
-                <DD>Result</DD>
+                <DD>{{total_km_walked}}</DD>
+                {% end if %}
+                
+                {% if total_pushups != 0 %}
                 <DT>Total Pushups:</DT>
-                <DD>Result</DD>
+                <DD>{{total_pushups}}</DD>
+                {% end if %}
+                
+                {% if total_situps != 0 %}
                 <DT>Total Situps:</DT>
-                <DD>Result</DD>
+                <DD>{{total_situps}}</DD>
+                {% end if %}
+                
             </DL>
         </DIV>
         
         <DIV>
             <H2>Recent Activity</H2>
             <DIV>   <!-- this div repeats for multiple activities -->
-                <H3>Name - Activity Type</H3>
+                <H3>{{activity_type}} - {{}}</H3>
                 <P>(Distance) and (Time) OR (count)</P>
             </DIV>
         </DIV>
