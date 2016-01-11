@@ -20,9 +20,14 @@
 		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
 			</form>
 		<ul style="float:right;list-style-type:none;">
+          {% if logged_in %}
 		  <li><a href="#contact">Input New Activity</a></li>
-		  <li><a href="#contact">My Profile</a></li>
-		  <li><a href="localhost:8888/login">Login</a></li>
+		  <li><a href="/profile/">My Profile</a></li>
+          <li><a href="/logout/">Logout</a></li>
+          {% else %}
+		  <li><a href="http://localhost:8888/login/">Login</a></li>
+          <li><a href="http://localhost:8888/register/">Register</a></li>
+          {% end if %}
 		</ul>
 		</HEADER>
     </BODY>
