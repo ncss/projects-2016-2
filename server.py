@@ -32,7 +32,7 @@ def profile_handler(response, user_id, profile_number=None):
 
 @requires_login
 def input_handler_get(response, user_id):
-    aih = ActivityInputHandler()
+    aih = ActivityInputHandler(user_id)
     vars = aih.get_template_data()
     vars['logged_in'] = True
     response.write(render("input_activity.html", vars))
@@ -42,7 +42,9 @@ def input_handler_post(response, user_id):
     aih = ActivityInputHandler(user_id)
     aih.load_activity_data(response)
     post = True
-    response.write(render("input_activity.html", aih.get_template_data(post)))
+    vars = aih.get_template_data(post)
+    vars['logged_in'] = True
+    response.write(render("input_activity.html", vars))
 
 @requires_login
 def updateprofile_handler(response, user_id):
