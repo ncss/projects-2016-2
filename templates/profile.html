@@ -123,6 +123,11 @@
         border-left: 6px;
         border-right: 16px;
     }
+	#profile_title{
+	position: relative;
+	top:-300px;
+	left: 50px;
+	}
     
 </style>
     {% include "header.html" %}
@@ -130,7 +135,7 @@
             <FIGURE>
                 <IMG src="{{pic_url}}">
                 <FIGCAPTION>
-                    <H1>{{full_name}} - {{email}}</H1>
+                    <H1 id="profile_title">{{full_name}} - {{email}}</H1>
                 </FIGCAPTION>
             </FIGURE>
         </DIV>
