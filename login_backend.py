@@ -40,5 +40,5 @@ def login(response,email,password):
         set_login_cookie(response, user.user_id)
         return user
 
-def logout():
+def logout(response):
     response.clear_cookie("user_id")
