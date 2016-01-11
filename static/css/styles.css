@@ -1,0 +1,358 @@
+/*
+------- Color Scheme -------
+Base colour: #ff6600
+*/
+header > h1, h2 {
+		padding: 25px 25px;
+		vertical-align: text-top;
+		color: #ff6600;
+		display: inline;
+		}
+		
+header > ul {
+	list-style-type: none;
+	margin: 0;
+	overflow: hidden;
+	background-color: #d9d9d9;
+}
+
+
+header > li {
+	float: left;
+}
+
+header > li a {
+	display: inline-block;
+	color: black;
+	text-align: center;
+	padding: 15px 20px;
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+header > li a:hover {
+	background-color: #ff6600;
+}
+
+#tfnewsearch{
+	padding:5;
+}
+
+
+.tftextinput{
+	margin: 0;
+	padding: 5px 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:14px;
+	border:1px solid #ff6600; border-right:0px;
+	border-top-left-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
+}
+.tfbutton {
+	margin: 0;
+	padding: 5px 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:14px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
+	border: solid 1px #0076a3; border-right:0px;
+	background: #ff6600;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff6600), to(#ffa366));
+	background: -moz-linear-gradient(top,  #ff6600,  #ffa366);
+	border-top-right-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+}
+.tfbutton:hover {
+	text-decoration: none;
+	background: #007ead;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+}
+/* Fixes submit button height problem in Firefox */
+.tfbutton::-moz-focus-inner {
+  border: 0;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #ff6600;
+}
+
+body {
+  padding: 20px;
+  background-color: white;
+  width: 960px;
+  margin: 0 auto;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+	line-height: 22px;
+	-ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; 
+}
+
+p {
+	margin: 11px;
+}
+
+h1 {
+  font-family: 'Josefin Sans', sans-serif;
+	font-size: 30px;
+	line-height: 33px;
+	margin: 38px 10px;
+	font-weight: 700;
+}
+
+h2 {
+  font-family: 'Josefin Sans', sans-serif;
+	font-size: 24px;
+	line-height: 26px;
+	margin: 34px 10px;
+	font-weight: 600;
+}
+
+h3 {
+  font-family: 'Josefin Sans', sans-serif;
+	font-size: 20px;
+	line-height: 23px;
+	margin: 30px 10px;
+	font-weight: 400;
+}
+
+p {
+
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+a {
+  background-color: transparent;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+small {
+  font-size: 80%;
+}
+
+img {
+  border: 0;
+}
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+
+button {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+  border: 0; 
+  padding: 0; 
+}
+
+textarea {
+  overflow: auto;
+}
+
+optgroup {
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 700;
+}
+
+ul {
+  list-style-type: square;
+}
+
+ol {
+  list-style-type: lower-alpha;
+}
+
+.button {
+  padding: 20px 40px;
+  border: 3px solid #ff6600;
+  background-color: white;
+  color: #ff6600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.button:hover {
+  background-color: #ff6600;
+  color: white;
+}
+
+form {
+  /*width: 960px;*/
+  border: 1px solid #ff6600;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  padding: 40px;
+}
+
+form input:not(.button) {
+  display: block;
+  width: 480px;
+  margin: 0 auto;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #DEDEDE;
+  border-radius: 3px;
+  outline: none;
+}
+
+form input:focus, form textarea:focus {
+  box-shadow: 0 0 10px 2px #9ecaed;
+  border: 1px solid #9ecaed;
+}
+
+form textarea {
+  width: 480px;
+  height: 100px;
+  border: 1px solid #DEDEDE;
+}
+
+form p {
+  width: 480px;
+  margin: 0 auto;
+}
+
+form select {
+  width: 480px;
+  line-height: 80px;
+  margin-bottom: 20px;
+}
+
+form label {
+  margin: 0 auto;
+}
+
+form h1 {
+  text-align: center;
+  margin: 0;
+}
+
+form h2 {
+  text-align: center;
+  margin: 0;
+}
+
+form h3 {
+  text-align: center;
+  margin: 0;
+}
+
+form .buttons {
+  text-align: right;
+  
+}
+
+.auth {
+  width: 600px;
+  margin: 0 auto;
+  text-align: right;
+  padding: 40px;
+}
+
+.auth input:not(.button) {
+  display: block;
+  width: 100%;
+  margin: 20px auto;
+  border: 1px solid #DEDEDE;
+  border-radius: 3px;
+}
+
+.auth .button {
+  margin-top: 10px;
+}
+
+/*fix h1, h2, h3 margin*/
