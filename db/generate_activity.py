@@ -15,7 +15,7 @@ luke = User(username = "luke", password ="yay", fname = "Luke", lname = "Anderso
 callan = User(username = "callan", password ="yay", fname = "Callan", lname = "McNamara", email = "callan@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
 nick = User(username = "nick", password ="yay", fname = "Nick", lname = "Armstrong", email = "nick@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
 elizabeth = User(username = "liz", password ="yay", fname = "Elizabeth", lname = "C", email = "elizabeth@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
-sandra = User(username = "sadra", password ="yay", fname = "Sanda", lname = "Brand", email = "sandra@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
+sandra = User(username = "sandra", password ="yay", fname = "Sandra", lname = "Brand", email = "sandra@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
 sid = User(username = "sid", password ="yay", fname = "Sid", lname = "Pham", email = "sid@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
 tom = User(username = "tom", password ="yay", fname = "Tom", lname = "Unknown", email = "tom@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
 kass = User(username = "kass", password ="yay", fname = "Kass", lname = "di Bona", email = "kass@ncss.edu.au", dob = "1999-12-01", postcode = "7004", country_code = "2", image = "")
