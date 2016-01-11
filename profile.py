@@ -43,6 +43,6 @@ class ProfileHandler:
             "full_name": (self.user.fname + ' ' + self.user.lname),
             "chart_data_json": json.dumps(real_chart_data),
             "activities":activities_list,
-            "pic_url": ""
+            "pic_url": self.user.pic
         }
         return user_data
