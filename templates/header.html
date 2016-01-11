@@ -22,10 +22,15 @@
 				<form id="tfnewsearch" method="get" action="/search/">
 					<input type="text" class="tftextinput" name="query" size="21" maxlength="120">
 				</form>
+				{% if logged_in %}
 				<a class="active" href="/home/">News Feed</a>
 				<a href="/input/">Input Activity</a>
 				<a href="/profile/">My Profile</a>
+				<a href="/logout/">Log out</a>
+				{% else %}
+				<a href="/register/">Register</a>
 				<a href="/login/">Login</a>
-			</nav>
-		</header>
-		<main>
+				{% end if %}
+            </nav>
+        </header>
+        <main>
