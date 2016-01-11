@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:700italic' rel='stylesheet' type='text/css'>
+
 <html>
 	<head>
 	<style>
-	
 	h1, h2 {
+	padding: 25px 25px;
 	vertical-align: text-top;
 	color: #ff6600;
     display: inline;
@@ -26,6 +28,7 @@
 		text-align: center;
 		padding: 15px 20px;
 		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
 	}
 
 	li a:hover {
@@ -74,21 +77,22 @@
 	  border: 0;
 	}
 	
-
 	</head>
 	</style>
 	
 		<HEADER>
 		<ul>
 		<li><IMG src="/static/img/icon.jpg" width="90" height="80"></li>
-		<li><H1>Footbook</H1></li>
+		<li><H1 style="font-family: 'Josefin Sans', sans-serif;">Footbook</H1></li>
 		  <li><a class="active" href="#home">News Feed</a></li>
 		  <li><a href="#news">News</a></li>
 			<form id="tfnewsearch" method="get" action="http://www.google.com">
 		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
 			</form>
+		<ul style="float:right;list-style-type:none;">
 		  <li><a href="#contact">Input New Activity</a></li>
 		  <li><a href="#contact">My Profile</a></li>
+		  <li><a href="localhost:8888/login">Login</a></li>
 		</ul>
 		</HEADER>
 </html>
