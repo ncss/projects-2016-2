@@ -80,6 +80,14 @@ Base colour: #ff6600
 }
 
 
+.clear-user-agent-styles {
+   width:100%;
+}
+
+.activity-td {
+   font-size:14px;
+}
+
 
 /* core style guide */
 * {

@@ -1,6 +1,8 @@
 from db.login import User
 import json, databasetocharts
 from collections import defaultdict
+import time
+import datetime
 class ProfileHandler:
     def __init__(self, user_id):
         self.user = User(user_id)
@@ -26,20 +28,21 @@ class ProfileHandler:
             metric_list.append(str(metric.value)+ " " + str(metric.metric_type))
             activity_dict[metric.activity].append(metric_list)
         print(activity_dict)
-        
-        for activity in activity_list:
-            activity_dict[activity] = activity_dict[activity].sort(key=lambda x:x[1].casefold())
-            
+                
         activities_list = []
         for activity_list in activity_dict:
-            activities_list.append(activity_dict[activity_list])
-            
-        activities_list.sort(key=lambda x:x[1].casefold())
+            activities_list.append(sorted(activity_dict[activity_list], key=lambda x:x[1]))
+            for item in activities_list[-1]:
+                item[1] = datetime.datetime.fromtimestamp(item[1]).strftime("%H:%M %p - %d/%m/%Y")
+        print(activities_list)    
+        print()
+        activities_list.sort(key=lambda x:x[0][0].casefold())
                 
         user_data = {
             "email": self.user.email,
             "full_name": (self.user.fname + ' ' + self.user.lname),
             "chart_data_json": json.dumps(real_chart_data),
-            "activities":activities_list
+            "activities":activities_list,
+            "pic_url": ""
         }
         return user_data

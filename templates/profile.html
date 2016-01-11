@@ -57,7 +57,7 @@
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:10px;
-	font-size:10px;
+	font-size:15px;
 	font-family:Arial;
 	font-weight:normal;
 	color:#000000;
@@ -126,24 +126,13 @@
     
 </style>
     {% include "header.html" %}
-
         <DIV>
             <FIGURE>
                 <IMG src="/static/img/profile_pic.jpg">
                 <FIGCAPTION>
-                    <H1>{{full_name}}</H1>
+                    <H1>{{full_name}} - {{email}}</H1>
                 </FIGCAPTION>
             </FIGURE>
-        </DIV>
-        
-        <DIV>
-            <H1>Personal Details</H1>
-                <DL>
-                    <DT>Email:</DT>
-                    <DD>{{email}}</DD>
-                    <DT>Full Name:</DT>
-                    <DD>{{full_name}}</DD>
-                </DL>
         </DIV>
         
         <DIV>
@@ -156,11 +145,7 @@
         
         <DIV>
             <H2>Recent Activity</H2>
-            <DIV class="CSSTableGenerator">   <!-- this div repeats for multiple activities
-                <H3><span class = 'one'>Activity</span><span class = 'two'>Time</span><span class = 'three'>Amount</span></H3>
-                {% for activity in activities %}
-                    <P><span class = 'one'></span><span class = 'two'>{{activity[1]}}</span><span class = 'three'>{{activity[2]}}</span></P>
-                {% end for %}-->
+            <DIV class="CSSTableGenerator">   
                 <TABLE class="clear-user-agent-styles">
                 
                         <!-- TR Table Row -->
@@ -170,13 +155,15 @@
                             <TD>Amount</TD>
                         </TR>
                 
-                        {% for activity in activities %}
-                        <!-- TR Table Row -->
-                        <TR>
-                            <TD>{{activity[0]}}</TD>
-                            <TD>{{activity[1]}}</TD>
-                            <TD>{{activity[2]}}</TD>
-                        </TR>
+                        {% for activity_type in activities %}
+						    {% for activity in activity_type %}
+								<!-- TR Table Row -->
+								<TR>
+									<TD class="activity-td">{{activity[0]}}</TD>
+									<TD class="activity-td">{{activity[1]}}</TD>
+									<TD class="activity-td">{{activity[2]}}</TD>
+								</TR>
+						    {% end for %}
                         {% end for %}
                 </TABLE>
             </DIV>
