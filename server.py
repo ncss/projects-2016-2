@@ -39,6 +39,9 @@ def search_handler(response):
 def login_handler(response):
     response.write(render("login.html", {'a': 'B'}))
 
+def page404_handler(response):
+  response.write(render("404.html", {}))
+
 def auth_handler(response):
     email = response.get_field('email')
     password = response.get_field('password')
@@ -66,5 +69,6 @@ server.register(r"/template/", template_demo)
 server.register(r"/login/", login_handler)
 server.register(r"/authenticate/", auth_handler)
 server.register(r"/logout/", logout_handler)
+server.register(r"/.*", page404_handler)
 
 server.run()
