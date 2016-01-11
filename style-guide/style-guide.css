@@ -179,7 +179,7 @@ ol {
 
 .button {
   padding: 20px 40px;
-  border: 4px solid #ff6600;
+  border: 3px solid #ff6600;
   background-color: white;
   color: #ff6600;
   text-transform: uppercase;
@@ -191,3 +191,44 @@ ol {
   color: white;
 }
 
+form {
+  border: 1px solid #ff6600;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+form input:not(.button) {
+  display: block;
+  width: 480px;
+  margin: 0 auto;
+}
+
+form label {
+  margin: 0 auto;
+}
+
+form h3 {
+  text-align: center;
+  margin: 0;
+}
+
+.auth {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px;
+}
+
+.auth input:not(.button) {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #DEDEDE;
+  border-radius: 3px;
+}
+
+.auth .button {
+  margin-top: 10px;
+}
+
+/*fix h1, h2, h3 margin*/
