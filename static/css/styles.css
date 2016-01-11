@@ -102,6 +102,9 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+main{
+	margin-top:150px;
+	}
 p {
 	margin: 11px;
 }
