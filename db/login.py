@@ -46,12 +46,12 @@ class User:
         conn.commit()
 
     @staticmethod
-    def login(username, password):
+    def login(email, password):
         cur = conn.execute('''
         SELECT *
         FROM users
-        WHERE username=? AND password=?
-        ''', (username, password))
+        WHERE email=? AND password=?
+        ''', (email, password))
         row = cur.fetchone()
         if row is not None:
             return User(*row)

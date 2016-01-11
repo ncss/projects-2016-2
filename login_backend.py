@@ -2,7 +2,6 @@ import db.login as db
 
 def set_login_cookie(response, email):
     response.set_secure_cookie("email", email) 
-    response.redirect("/")
 
 def get_login_cookie(response):
     email = response.get_secure_cookie("email")
@@ -14,16 +13,16 @@ def login(response,email,password):
     -Call db function
     -Cookies
     '''
-    email = get_login_cookie()
-    if email is not None:
+    cookie_email = get_login_cookie(response)
+    if cookie_email is not None:
         user = db.User
-        user.email = email
+        user.email = cookie_email
         return user.load()
     else:
         user = db.User.login(email, password)
         if user is None:
             return None
-        set_login_cookie(user.email)
+        set_login_cookie(response, user.email)
         return user
 
 
