@@ -22,7 +22,8 @@ CREATE TABLE users(
 CREATE TABLE following(
     follower INTEGER references users(id),
     followee INTEGER references users(id),
-    timestamp INTEGER NOT NULL
+    timestamp INTEGER NOT NULL,
+    PRIMARY KEY (follower, followee)
     );
 
 ---- Create table metrics
