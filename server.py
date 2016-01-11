@@ -2,7 +2,7 @@ from tornado.ncss import Server, ncssbook_log
 from activities import ActivityInputHandler, activity_dict
 from engine.template import render
 from profile import ProfileHandler
-from login_backend import login, requires_login, logout
+from login_backend import login, requires_login, logout, register
 
 
 def landing_handler(response):
@@ -56,6 +56,15 @@ def logout_handler(response):
     logout(response)
     response.redirect('/')
 
+def newuser_handler(response):
+    email = response.get_field('email')
+    password = response.get_field('password')
+    name = response.get_field('name')
+    tc = response.get_field('termsconditions')
+    print("====",tc,"====")
+    return register(response, email, password, name)
+
+
 server = Server()
 
 server.register(r"/", landing_handler)
@@ -69,6 +78,7 @@ server.register(r"/template/", template_demo)
 server.register(r"/login/", login_handler)
 server.register(r"/authenticate/", auth_handler)
 server.register(r"/logout/", logout_handler)
+server.register(r"/newuser/", newuser_handler)
 server.register(r"/.*", page404_handler)
 
 server.run()

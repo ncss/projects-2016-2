@@ -40,5 +40,22 @@ def login(response,email,password):
         set_login_cookie(response, user.user_id)
         return user
 
+def register(response, email, password, name):
+    """
+    1. register
+    2. register
+    3. say yay
+    """
+    if not db.User.check_email_free(email):
+        response.redirect('/register/?error=email')
+    else:
+        name += ' '
+        user = db.User(email=email, fname=name.split()[0], lname=' '.join(name.split()[1:]), password=password)
+        user.save()
+        login(response, email, password)
+        response.redirect('/')
+        
+
+
 def logout(response):
     response.clear_cookie("user_id")
