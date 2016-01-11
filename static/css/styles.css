@@ -381,7 +381,7 @@ body > header {
 }
 
 	body > header img {
-		width: 120px;
+		width: 150px;
 		vertical-align: middle;
 		margin-left: 20px;
 	}
@@ -480,5 +480,6 @@ html.landing {
 			display: block;
 			width: auto;
 			margin-bottom: 40px;
+			z-index: 1;
 		}
 
