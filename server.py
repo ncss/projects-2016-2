@@ -6,7 +6,7 @@ from login_backend import login, requires_login, logout, register
 
 
 def landing_handler(response):
-    response.write(render("landing.html", {'a': 'B'}))
+    response.write(render("landing.html", {'html_class': 'landing'}))
 
 @requires_login
 def home_handler(response, user_id):

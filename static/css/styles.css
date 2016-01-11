@@ -398,16 +398,16 @@ body > footer {
 /* ----------------------------------------------- */
 /* landing page                                    */
 /* ----------------------------------------------- */
-html {
+html.landing {
 	background-color: white;
 }
 
-	html body {
+	html.landing body {
 		padding: 0px;
 		width: 100%;
 	}
 
-	html body main {
+	html.landing body main {
 		position: relative;
 		z-index: 1;
 	}
@@ -418,22 +418,22 @@ html {
 			margin: 0px auto 30px auto;
 		}
 	
-			html body main form {
+			html.landing body main form {
 				border: none;
 				padding: 0px;
 				display: inline-block;
 				width: 330px;
 			}
 			
-				html body main form input {
+				html.landing body main form input {
 					width: 330px !important;
 				}
 			
-			html body main form:first-child {
+			html.landing body main form:first-child {
 				margin-right: 20px;
 			}
 			
-			html body main p {
+			html.landing body main p {
 				width: 600px;
 				margin: 0px auto;
 				margin-bottom: 15px;
