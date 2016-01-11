@@ -6,7 +6,7 @@ from login_backend import login, requires_login, logout, register
 
 
 def landing_handler(response):
-    response.write(render("landing.html", {'a': 'B'}))
+    response.write(render("landing.html", {'html_class': 'landing'}))
 
 @requires_login
 def home_handler(response, user_id):
@@ -25,13 +25,15 @@ def profile_handler(response, user_id, profile_number=None):
 
 @requires_login
 def input_handler_get(response, user_id):
-    aih = ActivityInputHandler()
+    aih = ActivityInputHandler(user_id)
     response.write(render("input_activity.html", aih.get_template_data()))
     
 @requires_login
 def input_handler_post(response, user_id):
-    aih = ActivityInputHandler()
+    aih = ActivityInputHandler(user_id)
     aih.load_activity_data(response)
+    post = True
+    response.write(render("input_activity.html", aih.get_template_data(post)))
 
 @requires_login
 def updateprofile_handler(response, user_id):
@@ -69,7 +71,8 @@ def newuser_handler(response):
     password = response.get_field('password')
     name = response.get_field('name')
     tc = response.get_field('termsconditions')
-    print("====",tc,"====")
+    if tc != "accept":
+        response.redirect('/register/?error=no_tc')
     return register(response, email, password, name)
 
 

@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<HTML>
-	<HEAD>
-		<LINK href='https://fonts.googleapis.com/css?family=Josefin+Sans:700italic' rel='stylesheet' type='text/css'>
-		<LINK rel="stylesheet" type="text/css" href="index_css.css">
-        <LINK rel="stylesheet" type="text/css" href="/static/css/styles.css">
-		<SCRIPT src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></SCRIPT>
-		<SCRIPT src="https://code.highcharts.com/highcharts.js"></SCRIPT>
-		<SCRIPT src="https://code.highcharts.com/modules/exporting.js"></SCRIPT>
-		<LINK rel="shortcut" icon href="/static/img/logo/footprinticon.png">
-	</HEAD>
-	
-    <BODY>
-		<HEADER>
-		<ul class="headerui">
-		<li class ="headerli"><a href="/"><IMG src="/static/img/footprintlogo.png" width="320" height="200"></a></li>
-		<ul class="headerui" style="float:right;list-style-type:none;">
-		<li class="headerli"><a class="active" href="/home/">News Feed</a></li>
-		  <li class="headerli"><a href="/input/">Input New Activity</a></li>
-		  <li class="headerli"><a href="/profile/">My Profile</a></li>
-		  <li class="headerli"><a href="/login/">Login</a></li>
-		  <form id="tfnewsearch" method="get" action="http://www.google.com">
-		  <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-		  </form>
-		</ul>
-		</ul>
-		</HEADER>
-    </BODY>
-</html>
+
+{% ifexists html_class %}
+	<html class="{{ html_class }}">
+{% else %}
+	<html>
+{% end if %}
+	<head>
+		<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:700italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" type="text/css" href="/statis/css/index_css.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+		<SCRIPT src="//code.jquery.com/jquery-1.10.2.js"></SCRIPT>
+		<SCRIPT src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></SCRIPT>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<link rel="shortcut icon" href="/static/img/footprinticon.png">
+	</head>
+	<body>
+		<header>
+			<img src="/static/img/footprintlogo.png">
+			<nav>
+				<form id="tfnewsearch" method="get" action="http://www.google.com">
+					<input type="text" class="tftextinput" name="q" size="21" maxlength="120">
+				</form>
+				<a class="active" href="/home/">News Feed</a>
+				<a href="/input/">Input Activity</a>
+				<a href="/profile/">My Profile</a>
+				<a href="/login/">Login</a>
+			</nav>
+		</header>
+		<main>
+

@@ -27,6 +27,9 @@
             <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
             <!-- graph of past activity - bar graph -->
             <H3>Activities</H3>
+			<SCRIPT>
+				var chart_data = {% safe chart_data_json %};
+			</SCRIPT>
             <SCRIPT src="/static/js/pieactivitychart.js"></SCRIPT>
 			<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
             <!-- pie chart of activity type -->

@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
-
+{% include "header.html" %}
 <title>Register</title>
 </head>
 
@@ -16,37 +16,54 @@
 
 <body>
 <h1>Register</h1>
-<p>Some stuff about how epic Fitbook is and how it is sooo life changing</p>
-<form action="/newuser/" method="POST">
+<p>Some stuff about how epic Footbook is and how it is sooo life changing</p>
+<form id="form" action="/newuser/" method="POST">
 <table>
     <tr>
         <td class="f1_label">Email </td><!-- email label-->
-        <td><input type="text" name="email" value="" placeholder="name@email.com" /><!-- password Input Box -->
+        <td><input type="text" id="email-input" name="email" value="" placeholder="name@email.com" required/><!-- password Input Box -->
         </td>
     </tr>
 
     <tr>
         <td class="f1_label">Password </td><!-- password label-->
-        <td><input type="password" name="password" value="" placeholder="password" /><!-- password Input Box -->
+        <td><input type="password" id="password-input" name="password" value="" placeholder="password" required/><!-- password Input Box -->
         </td>
     </tr>
 
         <td class="f1_label">Name </td><!-- email label-->
-        <td><input type="text" name="name" value="" placeholder="full name" /><!-- password Input Box -->
+        <td><input type="text" name="name" value="" placeholder="full name" required/><!-- password Input Box -->
         </td>
     </tr>
     <tr>
     	<td>
-        	<input type = "checkbox" name = "termsconditions" value = "accept" /> I accept the terms and conditions <br />
+        	<input type = "checkbox" name = "termsconditions" value = "accept" required/> I accept the terms and conditions <br />
         </td>
     </tr>
     <tr>
         <td>
-            <input type="submit" name="sign up" value="Sign Up" style="font-size:18px;" id = "button" /><!-- signup button -->
+            <input type="submit" name="sign up" value="Sign Up" style="font-size:18px;" id = "button" required/><!-- signup button -->
         </td>
     </tr>
 </table>
 </form>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {	
+    $('#form').validate({ // initialize the plugin
+        rules: {
+			email-input: {
+                required: true,
+                email: true
+            },
+            password-input: {
+                required: true,
+            }
+        }
+    });
+});
+</script>
+
 </body>
 
 {% include "footer.html" %}

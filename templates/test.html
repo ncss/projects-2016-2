@@ -24,5 +24,8 @@
         {% end if %}
         <p> {% include "test2.html" %} </p>
         {% for i in hello %} {{i}}{% end for %}
+		
+		{% ifexists a %} A EXISTS!!! {% else %} A DOES NOT EXIST {% end if %}
+		{% ifexists c %} C EXISTS!!! {% else %} C DOES NOT EXIST {% end if %}
     </body>
 </html>

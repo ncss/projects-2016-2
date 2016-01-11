@@ -2,6 +2,7 @@
 ------- Color Scheme -------
 Base colour: #ff6600
 */
+
 .headerheading{
 		padding: 25px 25px;
 		vertical-align: text-top;
@@ -34,6 +35,7 @@ Base colour: #ff6600
 .headerli a:hover {
 	background-color: #ff6600;
 }
+
 
 #tfnewsearch{
 	padding:5;
@@ -78,6 +80,8 @@ Base colour: #ff6600
 }
 
 
+
+/* core style guide */
 * {
   box-sizing: border-box;
 }
@@ -93,8 +97,8 @@ body {
   margin: 0 auto;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
-	line-height: 22px;
-	-ms-text-size-adjust: 100%;
+  line-height: 22px;
+  -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; 
 }
 
@@ -356,4 +360,122 @@ form .buttons {
   margin-top: 10px;
 }
 
-/*fix h1, h2, h3 margin*/
+
+
+
+/* ----------------------------------------------- */
+/* header                                          */
+/* ----------------------------------------------- */
+body > header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	background-color: rgba(255, 255, 255, 0.75);
+	z-index: 2;
+}
+
+	body > header img {
+		width: 120px;
+		vertical-align: middle;
+		margin-left: 20px;
+	}
+
+	body > header nav {
+		position: absolute;
+		right: 40px;
+		top: 0px;
+		height: 100px;
+		line-height: 100px;
+	}
+	
+		body > header nav a {
+			text-decoration: none;
+			color: black;
+			text-transform: uppercase;
+			margin-left: 15px;
+			font-weight: 600;
+			color: #555;
+		}
+		
+		body > header nav form {
+			border: none;
+			background-color: transparent;
+			padding: 0px;
+			height: 24px;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 20px;
+		}
+		
+			body > header nav form input {
+				height: 24px;
+				width: 120px !important;
+				margin-bottom: 0px !important;
+				display: inline-block !important;
+				padding: 0px 0px 0px 3px !important;
+			}
+
+/* ----------------------------------------------- */
+/* footer                                          */
+/* ----------------------------------------------- */
+body > footer {
+	background-color: #333;
+	color: #ccc;
+	text-align: center;
+	padding: 20px 0px;
+	margin-top: 40px;
+}
+	
+/* ----------------------------------------------- */
+/* landing page                                    */
+/* ----------------------------------------------- */
+html.landing {
+	background-color: white;
+}
+
+	html.landing body {
+		padding: 0px;
+		width: 100%;
+	}
+
+	html.landing body main {
+		position: relative;
+		z-index: 1;
+	}
+	
+		#auth-buttons {
+			text-align: center;
+			width: 700px;
+			margin: 0px auto 30px auto;
+		}
+	
+			html.landing body main form {
+				border: none;
+				padding: 0px;
+				display: inline-block;
+				width: 330px;
+			}
+			
+				html.landing body main form input {
+					width: 330px !important;
+				}
+			
+			html.landing body main form:first-child {
+				margin-right: 20px;
+			}
+			
+			html.landing body main p {
+				width: 600px;
+				margin: 0px auto;
+				margin-bottom: 15px;
+			}
+		
+		#imageslideshow1 {
+			display: block;
+			width: auto;
+			margin-bottom: 40px;
+		}
+
