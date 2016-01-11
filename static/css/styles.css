@@ -65,7 +65,7 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 22px;
   -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%; 
+  -webkit-text-size-adjust: 100%;
 }
 
 p {
@@ -336,7 +336,7 @@ body > header {
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	width: 100%;
+	width: 1500px;
 	height: 100px;
 	line-height: 100px;
 	background-color: rgba(255, 255, 255, 0.75);
