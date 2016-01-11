@@ -1,96 +1,73 @@
-<HTML>
-	<!-- Header -->
 
-	<BODY>
+    {% include "header.html" %}
 
-		<DIV>
+        <DIV>
 
-			<FIGURE>
-				<IMG src="/static/img/profile_pic.jpg">
-				<FIGCAPTION>
-					<H1>Full Name</H1>
-				</FIGCAPTION>
-			</FIGURE>
-		
-		</DIV>
-		
-		<DIV>
-		
-			<H1>Personal Details</H1>
-			
-				<DL>
-					<DT>Email:</DT>
-					<DD>example@example.com</DD>
-					<DT>Full Name:</DT>
-					<DD>John Smith</DD>
-				</DL>
-				
-		</DIV>
-		
-		<DIV>
-			
-			<H2>About</H2>
-			<P>
-				about me about me about me about me about me 
-				about me about me about me about me about me 
-				about me about me about me about me about me 
-				about me about me about me about me about me 
-				about me about me about me about me about me 
-				about me about me about me about me about me 
-				about me about me about me about me about me 
-				about me about me about me about me about me
-			</P>
-			
-		</DIV>
-		
-		<DIV>
-		
-			<H2>Stats</H2>
-			<H3>Past Activity</H3>
-			<IMG src="/static/img/graph.png" />
-			<!-- graph of past activity - bar graph -->
-			<H3>Activities</H3>
-			<IMG src="/static/img/piechart.png" />
-			<!-- pie chart of activity type -->
-			
-			<DL>
-				<!-- can we make this so that if any of the results are 0, it doesn't show them?? -->
-				<DT>Total Activities Logged:</DT>
-				<DD>Result</DD>
-				<DT>Total Time:</DT>
-				<DD>Result</DD>
-				<DT>Total Km's Run:</DT>
-				<DD>Result</DD>
-				<DT>Total Km's Cycled:</DT>
-				<DD>Result</DD>
-				<DT>Total Km's Swum</DT>
-				<DD>Result</DD>
-				<DT>Total Km's Walked:</DT>
-				<DD>Result</DD>
-				<DT>Total Pushups:</DT>
-				<DD>Result</DD>
-				<DT>Total Situps:</DT>
-				<DD>Result</DD>
-			</DL>
-		
-		</DIV>
-		
-		<DIV>
-		
-			<H2>Recent Activity</H2>
-			
-			<DIV>	<!-- this div repeats for multiple activities -->
-			
-				<H3>Name - Activity Type</H3>
-				<P>(Distance) and (Time) OR (count)</P>
-			
-			</DIV>
-		
-		</DIV>
-		
-	
-	</BODY>
-	
-	<!-- Footer -->
+            <FIGURE>
+                <IMG src="/static/img/profile_pic.jpg">
+                <FIGCAPTION>
+                    <H1>{{full_name}}</H1>
+                </FIGCAPTION>
+            </FIGURE>
+        
+        </DIV>
+        
+        <DIV>
+        
+            <H1>Personal Details</H1>
+            
+                <DL>
+                    <DT>Email:</DT>
+                    <DD>{{email}}</DD>
+                    <DT>Full Name:</DT>
+                    <DD>{{full_name}}</DD>
+                </DL>
+                
+        </DIV>
+        
+        <DIV>
+        
+            <H2>Stats</H2>
+            <H3>Past Activity</H3>
+            <IMG src="/static/img/graph.png" />
+            <!-- graph of past activity - bar graph -->
+            <H3>Activities</H3>
+            <IMG src="/static/img/piechart.png" />
+            <!-- pie chart of activity type -->
+            
+            <DL>
+                <DT>Total Activities Logged:</DT>
+                <DD>Result</DD>
+                <DT>Total Time:</DT>
+                <DD>Result</DD>
+                <DT>Total Km's Run:</DT>
+                <DD>Result</DD>
+                <DT>Total Km's Cycled:</DT>
+                <DD>Result</DD>
+                <DT>Total Km's Swum</DT>
+                <DD>Result</DD>
+                <DT>Total Km's Walked:</DT>
+                <DD>Result</DD>
+                <DT>Total Pushups:</DT>
+                <DD>Result</DD>
+                <DT>Total Situps:</DT>
+                <DD>Result</DD>
+            </DL>
+        
+        </DIV>
+        
+        <DIV>
+        
+            <H2>Recent Activity</H2>
+            
+            <DIV>   <!-- this div repeats for multiple activities -->
+            
+                <H3>Name - Activity Type</H3>
+                <P>(Distance) and (Time) OR (count)</P>
+            
+            </DIV>
+        
+        </DIV>
+        
+    {% include "footer.html" %}
 
-</HTML>
