@@ -1,0 +1,59 @@
+{% include "index.html" %}
+
+<style>
+label{
+float:left;
+width:100px;
+}
+
+form div {
+	margin: 16px;
+}
+
+form {
+	width: 400px;
+}
+
+#submit {
+	margin-left:45%;
+}
+.placeholderStyle{
+	font-family:sans-serif;
+}
+
+</style>
+
+<body>
+	<ul>
+	<li><a class="active" href="#home">Home</a></li>
+	<li><a href="#news">News</a></li>
+	<li><a href="#contact">Contact</a></li>
+	<li><a href="#about">About</a></li>
+	</ul>
+<form>
+<div>
+<label>Full Name</label>
+<input type="text" name="full_name"  placeholder = "Eg. James Curran" class = "placeholderStyle" required /> 
+</div>
+		<H1>Personal Details</H1>
+<div>
+<label>Email</label>
+<input type="email" name="email"  placeholder = "Eg. james.curran@footbook.com" class = "placeholderStyle" size = "28" required /> 
+</div>
+
+<div>
+<label>About</label>
+<textarea rows="5%" cols = "30" placeholder = "Tell us about yourself" class = "placeholderStyle"></textarea>
+</div>
+
+<div>
+<label>Password</label>
+<input type="password" name="password" placeholder = "XXXXXXXX" class = "placeholderStyle" required /> 
+</div>
+<div>
+<input id = "submit" type = "submit" value = "Update"/><br>
+</div>
+</form>
+</body>
+
+{% include "footer.html" %}
