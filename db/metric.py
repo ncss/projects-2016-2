@@ -2,6 +2,7 @@ import sqlite3
 import datetime
 
 conn = sqlite3.connect("ncssbook.db")
+conn.row_factory = sqlite3.Row
 
 class Metric:  
     def __init__(self, id="", user="", activity="", timestamp="", metric_type="", value=""):
