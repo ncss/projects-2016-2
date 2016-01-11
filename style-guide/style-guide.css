@@ -2,9 +2,15 @@
 ------- Color Scheme -------
 Base colour: #ff6600
 */
+html {
+  /*background-color: #ff6600;*/
+}
 
 body {
-	font-size: 14px;
+  /*background-color: white;*/
+  width: 960px;
+  margin: 0 auto;
+  font-size: 14px;
   font-family: 'Roboto', sans-serif;
 	line-height: 22px;
 	-ms-text-size-adjust: 100%;
@@ -153,6 +159,14 @@ table {
 td,
 th {
   padding: 0;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 700;
 }
 
 ul {
