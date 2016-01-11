@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-
 {% ifexists html_class %}
 	<html class="{{ html_class }}">
 {% else %}
 	<html>
 {% end if %}
-
 	<head>
 		<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:700italic' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="reset.css">
@@ -15,16 +13,64 @@
 		<SCRIPT src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></SCRIPT>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="http://twitter.github.com/typeahead.js/releases/latest/typeahead.bundle.min.js"></script>		
 		<link rel="shortcut icon" href="/static/img/footprinticon.png">
+		
 	</head>
-	
 	<body>
 		<header>
 			<a href="/"><img src="/static/img/footprintlogo.png"></a>
 			<nav>
-				<form id="tfnewsearch" method="get" action="http://www.google.com">
-					<input type="text" class="tftextinput" name="q" size="21" maxlength="120">
-				</form>
+					{% if logged_in %}
+					<div id="searchDiv">
+					  <input class="typeahead" type="text" name="q" size="21" maxlength="120" placeholder="Search Users">
+					</div>	
+					{% end if %}
+					
+							<script type="text/javascript">
+					$.ajax({
+					  type: "GET",
+					  url: "/api/autocomplete?query=",
+					  cache: false,
+					  success: function(peopleJSON){
+						console.log(peopleJSON)					
+					
+						  var substringMatcher = function(strs) {
+						  return function findMatches(q, cb) {
+							var matches, substringRegex;
+
+							// an array that will be populated with substring matches
+							matches = [];
+
+							// regex used to determine if a string contains the substring `q`
+							substrRegex = new RegExp(q, 'i');
+
+							// iterate through the pool of strings and for any string that
+							// contains the substring `q`, add it to the `matches` array
+							$.each(strs, function(i, str) {
+							  if (substrRegex.test(str)) {
+								matches.push(str);
+							  }
+							});
+
+							cb(matches);
+						  };
+						};
+
+						$('#searchDiv .typeahead').typeahead({
+						  hint: true,
+						  highlight: true,
+						  minLength: 1
+						},
+						{
+						  name: 'people',
+						  source: substringMatcher(peopleJSON)
+						});		
+					
+						}
+				});		
+		</script>
+		
 				{% if logged_in %}
 				<a class="active" href="/home/">News Feed</a>
 				<a href="/input/">Input Activity</a>
@@ -34,7 +80,6 @@
 				<a href="/register/">Register</a>
 				<a href="/login/">Login</a>
 				{% end if %}
-				
-            </nav>
-        </header>
-        <main>
+			</nav>
+		</header>
+		<main>
