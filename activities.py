@@ -1,5 +1,7 @@
 import tornado.ncss as tornado
 from engine.template import render
+from db.metric import Metric
+import time
 
 class Activity:
     title = None
@@ -16,6 +18,10 @@ class Activity:
 
     
 class ActivityInputHandler:
+
+    def __init__(self, user_id):
+        self.user_id = user_id
+    
     activities = {
         "running": Activity("Running","Walking quickly","child", [
             {"title": "Duration", "units": "minutes"},
@@ -51,13 +57,14 @@ class ActivityInputHandler:
         return {"activities": self.activities}
         
     def load_activity_data(self, request):
-        print(request.get_field("swimming_Duration"))
+        time_stamp = int(time.time())
         for activity_name, activity in self.activities.items():
             for metric in activity.metric_list:
                 field_name = activity_name + "_" + metric["title"]
-                print(field_name)
-                print(request.get_field(field_name))
-            
+                current_field = request.get_field(field_name)
+                if current_field != None:
+                    m = Metric(user=self.user_id, activity=activity_name, timestamp=time_stamp, metric_type=metric["units"], value=current_field)
+                    m.save()
             
             
             
