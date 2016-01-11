@@ -13,7 +13,9 @@ form {
 
 </STYLE>
 
-
+{% if is_post %}
+<p>Data Added</p>
+{% end if %}
 <FORM action="/input/" method="POST">
 	<UL id="activity_input_list">
 	{% for activity in activities.items() %}
