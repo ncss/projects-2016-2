@@ -92,7 +92,6 @@ html {
 
 body {
   padding: 20px;
-  background-color: white;
   width: 1100px;
   margin: 0 auto;
   font-size: 14px;
@@ -103,7 +102,9 @@ body {
 }
 
 main{
-	margin-top:150px;
+	background-color: white;
+	margin-top:120px;
+	padding: 20px;
 	}
 p {
 	margin: 11px;
@@ -280,16 +281,12 @@ ol {
 }
 
 form {
-  /*width: 960px;*/
-  border: 1px solid #ff6600;
-  border-radius: 5px;
   background-color: #f7f7f7;
-  padding: 40px;
 }
 
-form input:not(.button) {
+form input:not(.button,[type=checkbox]) {
   display: block;
-  width: 480px;
+  width: 90%;
   margin: 0 auto;
   padding: 10px;
   margin-bottom: 20px;
@@ -341,7 +338,14 @@ form h3 {
 
 form .buttons {
   text-align: right;
-  
+}
+
+form input[type=checkbox] {
+	margin-left: 5px;
+}
+
+form input[type=submit] {
+	margin-top: 10px;
 }
 
 .auth {
@@ -363,7 +367,9 @@ form .buttons {
   margin-top: 10px;
 }
 
-
+#auth-buttons form {
+  border: none
+}
 
 
 /* ----------------------------------------------- */
@@ -425,11 +431,10 @@ body > header {
 /* footer                                          */
 /* ----------------------------------------------- */
 body > footer {
-	background-color: #333;
+	background-color: #fff;
 	color: #ccc;
 	text-align: center;
-	padding: 20px 0px;
-	margin-top: 40px;
+	padding: 0px 20px 20px 20px;
 }
 	
 /* ----------------------------------------------- */
@@ -449,10 +454,26 @@ html.landing {
 		z-index: 1;
 	}
 	
-		#auth-buttons {
+	.landingintro {
+	width: 1100px;
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.5em;
+	line-height: 150%;
+	}
+		.auth-buttons {
 			text-align: center;
-			width: 700px;
-			margin: 0px auto 30px auto;
+			width: 49%;
+			margin: 0 auto 0 auto;
+			display: inline-block;
+		}
+		
+		#auth-buttons-id {
+			margin: 50px auto 0 auto;
+			width: 1100px;
+			text-align: center;
+			
 		}
 	
 			html.landing body main form {
@@ -482,4 +503,8 @@ html.landing {
 			margin-bottom: 40px;
 			z-index: 1;
 		}
-
+		
+	.footer {
+		background-color: #333;
+		padding: 20px 0px;
+	}
