@@ -21,6 +21,7 @@ class Metric:
         INSERT INTO metrics(user, activity, timestamp, metric_type, value, submit_timestamp)
             VALUES (?, ?, ?, ? ,?, ?)
         ''', (self.user, self.activity, self.timestamp, self.metric_type, self.value, submit_timestamp))
+        conn.commit()
         
     def load(self):
         cur = conn.execute('''
@@ -35,10 +36,3 @@ class Metric:
         self.metric_type = row["metric_type"]
         self.id = row["id"]
         self.value = row["value"]
-     
-     
-     
-
-     
-    
-    
