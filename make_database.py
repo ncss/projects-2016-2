@@ -1,1 +1,1 @@
-from db import init, fake_data
+from db import init, generate_activity
