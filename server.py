@@ -16,8 +16,11 @@ def register_handler(response):
     response.write(render("register.html", {'a': 'B'}))
 
 @requires_login
-def profile_handler(response, user_id):
-    poh = ProfileHandler(user_id)
+def profile_handler(response, user_id, profile_number=None):
+    display_profile = user_id
+    if profile_number is not None:
+        display_profile = profile_number
+    poh = ProfileHandler(display_profile)
     response.write(render("profile.html", poh.display_profile()))
 
 @requires_login
@@ -26,7 +29,7 @@ def input_handler(response, user_id):
     response.write(render("input_activity.html", aih.get_template_data()))
 
 @requires_login
-def updateprofile_handler(response):
+def updateprofile_handler(response, user_id):
     response.write(render("update_profile.html", {'a': 'B'}))
 
 @requires_login
@@ -70,6 +73,7 @@ server = Server()
 server.register(r"/", landing_handler)
 server.register(r"/home/", home_handler)
 server.register(r"/register/", register_handler)
+server.register(r"/profile/", profile_handler)
 server.register(r"/profile/(\d+)/", profile_handler)
 server.register(r"/input/", input_handler)
 server.register(r"/updateprofile/", updateprofile_handler)
