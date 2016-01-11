@@ -1,7 +1,7 @@
 $(function () {
     $('#activity_feed2').highcharts({
         title: {
-            text: 'Activity over past week',
+            text: '',
             x: -20 //center
         },
         subtitle: {
