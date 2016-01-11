@@ -23,7 +23,7 @@ class User:
             SELECT *
             FROM users
             WHERE user_id = ?
-            ''', (user_id,))
+            ''', (self.user_id,))
         row = cur.fetchone()
         self.username = row["username"]
         self.password = row["password"]
@@ -44,6 +44,55 @@ class User:
     ''', (self.username, self.password, self.fname, self.lname, self.email, self.dob, self.postcode, self.country_code, int(time.time()), self.image))
         conn.commit()
 
+	def get_activities(self):
+		if self.user_id is None:
+			raise Exception("No user ID defined. Cannot get activities!")
+			
+		cur = conn.execute('''
+			SELECT DISTINCT activity
+			FROM metrics
+			WHERE ? = user
+			''', (self.user_id,))
+			activities = []
+			
+		##TODO: Create an activity object rather than send the raw row
+		for row in cur:
+			activities.append(row["activity"])
+		
+		return activities
+	
+	#Returns all of the metrics a user has
+	def get_all_metrics(self):
+		if self.user_id is None:
+			raise Exception("No user ID defined. Cannot get metrics!")
+		
+		cur = conn.execute('''
+			SELECT *
+			FROM metrics
+			WHERE user = ?
+		''', (self.user_id,))
+		
+		metrics = []
+		for row in cur:
+			metrics.append(Metric(row["id"], row["user"], row["activity"], row["timestamp"], row['metric_type'], row['value']))
+		return metrics
+	
+	#Returns all of the metrics for a specific metric
+	def get_activity_metric(self, activity):
+		if self.user_id is None:
+			raise Exception("No user ID defined. Cannot get metrics for activity " +  activity)
+		
+		curr = conn.execute('''
+		SELECT * 
+		FROM metrics
+		WHERE user = ? AND activity = ?
+		''', (self.user_id, activity))
+		
+		metrics = []
+		for row in cur:
+			metrics.append(Metric(row["id"], row["user"], row["activity"], row["timestamp"], row['metric_type'], row['value']))
+		return metrics
+		
     @staticmethod
     def login(username, password):
         cur = conn.execute('''
