@@ -1,33 +1,10 @@
+<!DOCTYPE html>
 <html>
-<head>
-<style>
-h2{
-color:red;
-}
-
-.face{
-width:40px;
-height:40px;
-background:black;
-border-radius:1000px;
-float:left;
-}
-
-article{
-border:1px solid black;
-width:400px;
-}
-
-time{
-float:right;
-}
-</style>
-
-
-</head>
 <body>
+{% include "header.html" %}
+
 {% for i in range(10) %}
-<article>
+<article class ="feed">
 <div class="face">
 </div> 
   <time>11:04</time>
@@ -36,4 +13,5 @@ float:right;
 </article>
 {% end for %}
 </body>
+{% include "footer.html" %}
 </html>

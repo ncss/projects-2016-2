@@ -1,5 +1,6 @@
 import sqlite3
 import time
+from db.metric import Metric
 
 conn = sqlite3.connect('ncssbook.db')
 conn.row_factory = sqlite3.Row
@@ -7,7 +8,7 @@ conn.row_factory = sqlite3.Row
 
 class User:
     
-    def __init__(self, user_id=None, username="", password="", fname="", lname="", email="", dob="", postcode="", country_code="", image=""):
+    def __init__(self, user_id=None, username="", password="", email="", fname="", lname="", dob="", postcode="", country_code="", signup_timestamp=0, image=""):
         self.user_id = user_id
         self.username = username
         self.password = password
@@ -86,17 +87,65 @@ class User:
         for row in curr:
             followees.append(User(row["id"], row["username"], row["password"], row["fname"], row["lname"], row["email"], row["dob"], row["postcode"], row["country_code"], row["image"])) 
         return followees
+
+    def get_activities(self):
+        if self.user_id is None:
+            raise Exception("No user ID defined. Cannot get activities!")
+            
+        cur = conn.execute('''
+            SELECT DISTINCT activity
+            FROM metrics
+            WHERE ? = user
+            ''', (self.user_id,))
+        activities = []
+            
+        for row in cur:
+            activities.append(row["activity"])
+        
+        return activities
+    
+    #Returns all of the metrics a user has
+    def get_all_metrics(self):
+        if self.user_id is None:
+            raise Exception("No user ID defined. Cannot get metrics!")
+        
+        cur = conn.execute('''
+            SELECT *
+            FROM metrics
+            WHERE user = ?
+        ''', (self.user_id,))
+        
+        metrics = []
+        for row in cur:
+            metrics.append(Metric(row["id"], row["user"], row["activity"], row["timestamp"], row['metric_type'], row['value']))
+        return metrics
+    
+    #Returns all of the metrics for a specific metric
+    def get_activity_metrics(self, activity):
+        if self.user_id is None:
+            raise Exception("No user ID defined. Cannot get metrics for activity " +  activity)
+       
+        cur = conn.execute('''
+        SELECT * 
+        FROM metrics
+        WHERE user = ? AND activity = ?
+        ''', (self.user_id, activity))
+        
+        metrics = []
+        for row in cur:
+            metrics.append(Metric(row["id"], row["user"], row["activity"], row["timestamp"], row['metric_type'], row['value']))
+        return metrics
         
     @staticmethod
-    def login(username, password):
+    def login(email, password):
         cur = conn.execute('''
         SELECT *
         FROM users
-        WHERE username=? AND password=?
-        ''', (username, password))
+        WHERE email=? AND password=?
+        ''', (email, password))
         row = cur.fetchone()
         if row is not None:
-             return User(**row)
+            return User(*row)
         else:
              return None
 
