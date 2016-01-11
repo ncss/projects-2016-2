@@ -53,8 +53,8 @@ class ActivityInputHandler:
         ]),
         }
     
-    def get_template_data(self):
-        return {"activities": self.activities}
+    def get_template_data(self, post=False):
+        return {"activities": self.activities, "is_post": post}
         
     def load_activity_data(self, request):
         time_stamp = int(time.time())
