@@ -2,6 +2,7 @@ import db.login as db
 from urllib.parse import urlencode
 import functools
 import time
+import re
 
 def set_login_cookie(response, user_id):
     response.set_secure_cookie("user_id", str(user_id), expires=time.time() + 24 * 3600) 
@@ -39,6 +40,25 @@ def login(response,email,password):
             return None
         set_login_cookie(response, user.user_id)
         return user
+
+def register(response, email, password, name):
+    """
+    1. register
+    2. register
+    3. say yay
+    """
+    if not re.match("[^@ ]+@[^@ ]+\.[^@ ]+", email):
+        response.redirect('/register/?error=invalid_email')
+    elif not db.User.check_email_free(email):
+        response.redirect('/register/?error=dupe_email')
+    else:
+        name += ' '
+        user = db.User(email=email, fname=name.split()[0], lname=' '.join(name.split()[1:]), password=password)
+        user.save()
+        login(response, email, password)
+        response.redirect('/')
+        
+
 
 def logout(response):
     response.clear_cookie("user_id")
