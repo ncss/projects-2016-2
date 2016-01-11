@@ -2,7 +2,7 @@ import random
 from db.login import User
 from db.metric import Metric
 
-tim = User(username = "tim", password = "abc123", fname = "Tim", lname = "Dawborn", email = "tim@ncss.edu.au", dob = "2016-01-10", postcode = "1234", country_code = "555", image = "")
+tim = User(username = "GeorgeF", password = "a", fname = "George", lname = "Forman", email = "a", dob = "2016-01-10", postcode = "1234", country_code = "555", image = "")
 james = User(username = "james", password = "123abc", fname = "James", lname = "Curran", email = "jdog@ncss.edu.au", dob = "2016-01-09", postcode = "1000", country_code = "522", image = "")
 nicky = User(username = "nicky", password = "nickykneecapper", fname = "Nicky", lname = "Ringland", email = "nicky@ncss.edu.au", dob = "2016-01-08", postcode = "1337", country_code = "54", image = "")
 simon = User(username = "simon", password = "yay", fname = "Simon", lname = "Shields", email = "simon@ncss.edu.au", dob = "2016-01-04", postcode = "999", country_code = "2", image = "")
@@ -54,7 +54,7 @@ ryan.save()
 
 for user_number in range(0, 23):
     currenttimestamp = 1452473361
-    for i in range(57):
+    for i in range(20):
         currenttimestamp += 86100
         minutes = random.randint(4, 90)
         checker = random.randint(0, 8)
