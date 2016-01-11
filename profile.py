@@ -1,4 +1,5 @@
 from db.login import User
+import json
 
 class ProfileHandler:
     def __init__(self, user_id):
@@ -6,12 +7,29 @@ class ProfileHandler:
         self.user.load()
     
     def display_profile(self):
-        user_data = {"email": self.user.email, "full_name": (self.user.fname + ' ' + self.user.lname)
-        "total_km_run": (self.user.total_m_run/1000),
-        "total_km_cycled": (self.user.total_m_cycled/1000),
-        "total_km_swum": (self.user.total_m_swum/1000),
-        "total_km_walked": (self.user.total_m_walked/1000),
-        "total_pushups": (self.user.total_pushups),
-        "total_situps": (self.user.total_situps),}
+        chart_data = [{
+               "name": 'Sleeping',
+               "y": 30
+            }, {
+               "name": 'Resting',
+               "y": 20,
+               "sliced": True,
+               "selected": True
+            }, {
+               "name": 'Relaxing',
+               "y": 20
+            }, {
+               "name": 'Snoozing',
+               "y": 5
+            }, {
+               "name": 'Lolling',
+               "y": 5
+            }]
+    
+    
+        user_data = {
+            "email": self.user.email,
+            "full_name": (self.user.fname + ' ' + self.user.lname),
+            "chart_data_json": json.dumps(chart_data)
         }
         return user_data

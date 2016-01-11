@@ -49,6 +49,10 @@ def register(response, email, password, name):
     """
     if not re.match("[^@ ]+@[^@ ]+\.[^@ ]+", email):
         response.redirect('/register/?error=invalid_email')
+    elif len(password) < 1:
+        response.redirect('/register/?error=invalid_pass')
+    elif len(name) < 1:
+        response.redirect('/register/?error=invalid_name')
     elif not db.User.check_email_free(email):
         response.redirect('/register/?error=dupe_email')
     else:

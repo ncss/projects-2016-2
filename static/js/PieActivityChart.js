@@ -29,24 +29,7 @@ $(function () {
         series: [{
             name: 'Activities',
             colorByPoint: true,
-            data: [{
-                name: 'Sleeping',
-                y: 50
-            }, {
-                name: 'Resting',
-                y: 20,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Relaxing',
-                y: 20
-            }, {
-                name: 'Snoozing',
-                y: 5
-            }, {
-                name: 'Lolling',
-                y: 5
-            }]
+            data: chart_data
         }]
     });
 });
