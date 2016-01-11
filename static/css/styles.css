@@ -2,14 +2,15 @@
 ------- Color Scheme -------
 Base colour: #ff6600
 */
-header > h1, h2 {
+.headerheading{
 		padding: 25px 25px;
 		vertical-align: text-top;
 		color: #ff6600;
 		display: inline;
+		font-family: 'Josefin Sans', sans-serif;
 		}
 		
-header > ul {
+.headerui {
 	list-style-type: none;
 	margin: 0;
 	overflow: hidden;
@@ -17,11 +18,11 @@ header > ul {
 }
 
 
-header > li {
+.headerli {
 	float: left;
 }
 
-header > li a {
+.headerli a {
 	display: inline-block;
 	color: black;
 	text-align: center;
@@ -30,7 +31,7 @@ header > li a {
 	font-family: 'Josefin Sans', sans-serif;
 }
 
-header > li a:hover {
+.headerli a:hover {
 	background-color: #ff6600;
 }
 
@@ -60,8 +61,8 @@ header > li a:hover {
 	color: #ffffff;
 	border: solid 1px #0076a3; border-right:0px;
 	background: #ff6600;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ff6600), to(#ffa366));
-	background: -moz-linear-gradient(top,  #ff6600,  #ffa366);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff6600), to(#ff6800));
+	background: -moz-linear-gradient(top,  #ff6600,  #ff6800);
 	border-top-right-radius: 5px 5px;
 	border-bottom-right-radius: 5px 5px;
 }
