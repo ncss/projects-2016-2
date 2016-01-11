@@ -3,26 +3,20 @@
 <link rel="stylesheet" type="text/css" href="styles.css">
 
 <div id="login_form">
-    <div class="new"><span>LOGIN</span></div>  <!--header-->
+    <h1>Login</h1>  <!--header-->
     <form name="f1" method="post" action="/authenticate/" id="f1">
-        <table>
-            <tr>
-                <td class="f1_label">Email</td> <!-- email input box-->
-                <td><input type="text" name="email" value="" placeholder="name@email.com"/><!-- Email Box-->
-                </td>
-            </tr>
-            <tr>
-                <td class="f1_label">Password </td><!-- password label-->
-                <td><input type="password" name="password" value="" placeholder="password" /><!-- password Input Box -->
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input id="buttonlogin" type="submit" name="login" value="Log In" style="font-size:18px;" id = "button" /><!-- login button -->
-                </td>
-            </tr>
-        </table>
-    </form> 
+	<p>
+        <label>Email: 
+            <input type="text" name="email" value="" placeholder="name@email.com"/>
+        </label>
+    </p>
+	<p>
+        <label>Password: 
+            <input type="password" name="password" value="" placeholder="password" />
+        </label>
+    </p>
+    <p><input type="submit" name="login" value="Log In" id = "button" /></p>
+    </form>
 </div>
 
 {% include "footer.html" %}

@@ -103,8 +103,8 @@ body {
 
 main{
 	background-color: white;
-	margin-top:120px;
-	padding: 1px 20px 20px 20px;
+	margin-top: 110px;
+	padding: 20px;
 	}
 p {
 	margin: 11px;
@@ -112,10 +112,11 @@ p {
 
 h1 {
   font-family: 'Josefin Sans', sans-serif;
-	font-size: 30px;
+	font-size: 2em;
 	line-height: 33px;
-	margin: 38px 10px;
+	margin: 20px 20px;
 	font-weight: 700;
+	text-align: center;
 }
 
 h2 {
@@ -338,14 +339,23 @@ form label {
 
 form input:not(.button) {
   display: block;
-  width: 400px;
-  /*margin: 0 auto;*/
+  width: 100%;
   margin: 0px;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #DEDEDE;
+  border: 1px solid #ddd;
   border-radius: 3px;
   outline: none;
+}
+
+form input[type="checkbox"] {
+  display: inline;
+  width: auto;
+  margin-right: 1em;
+}
+
+form input[type="submit"]:hover {
+  background-color: #ffccaa;
 }
 
 form h1 {
@@ -479,6 +489,8 @@ html.landing {
 	html.landing body main {
 		position: relative;
 		z-index: 1;
+		margin: 0 0 20px 0;
+		padding: 0px;
 	}
 	
 	.landingintro {
@@ -488,6 +500,10 @@ html.landing {
 	font-family: 'Roboto', sans-serif;
 	font-size: 1.5em;
 	line-height: 150%;
+	}
+	
+	.landingintro p+p {
+		padding-top: 0.5em;
 	}
 		.auth-buttons {
 			text-align: center;
@@ -519,7 +535,7 @@ html.landing {
 			}
 			
 			html.landing body main p {
-				width: 600px;
+				width: 800px;
 				margin: 0px auto;
 				margin-bottom: 15px;
 			}
@@ -559,9 +575,9 @@ html.landing {
   width: 200px;
   height: 30px;
   padding: 8px 12px;
-  font-size: 24px;
+  font-size: 1em;
   line-height: 30px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   -webkit-border-radius: 8px;
      -moz-border-radius: 8px;
           border-radius: 8px;
