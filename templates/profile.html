@@ -1,4 +1,128 @@
+<style>
+    * { box-sizing: border-box; }
 
+.CSSTableGenerator {
+	margin:0px;padding:0px;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:7px;
+	-webkit-border-bottom-left-radius:7px;
+	border-bottom-left-radius:7px;
+	
+	-moz-border-radius-bottomright:7px;
+	-webkit-border-bottom-right-radius:7px;
+	border-bottom-right-radius:7px;
+	
+	-moz-border-radius-topright:7px;
+	-webkit-border-top-right-radius:7px;
+	border-top-right-radius:7px;
+	
+	-moz-border-radius-topleft:7px;
+	-webkit-border-top-left-radius:7px;
+	border-top-left-radius:7px;
+}.CSSTableGenerator table{
+    border-collapse: collapse;
+    border-spacing: 0;
+	margin:0px;padding:0px;
+}.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright:7px;
+	-webkit-border-bottom-right-radius:7px;
+	border-bottom-right-radius:7px;
+}
+.CSSTableGenerator table tr:first-child td:first-child {
+	-moz-border-radius-topleft:7px;
+	-webkit-border-top-left-radius:7px;
+	border-top-left-radius:7px;
+}
+.CSSTableGenerator table tr:first-child td:last-child {
+	-moz-border-radius-topright:7px;
+	-webkit-border-top-right-radius:7px;
+	border-top-right-radius:7px;
+}.CSSTableGenerator tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:7px;
+	-webkit-border-bottom-left-radius:7px;
+	border-bottom-left-radius:7px;
+}.CSSTableGenerator tr:hover td{
+	
+}
+.CSSTableGenerator tr:nth-child(odd){ background-color:#fff4ea; }
+.CSSTableGenerator tr:nth-child(even)    { background-color:#ffffff; }.CSSTableGenerator td{
+	vertical-align:middle;
+	
+	
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:10px;
+	font-size:10px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}.CSSTableGenerator tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.CSSTableGenerator tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.CSSTableGenerator tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.CSSTableGenerator tr:first-child td{
+		background:-o-linear-gradient(bottom, #ff7f00 5%, #ff7f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #ff7f00) );
+	background:-moz-linear-gradient( center top, #ff7f00 5%, #ff7f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#ff7f00");	background: -o-linear-gradient(top,#ff7f00,ff7f00);
+
+	background-color:#ff7f00;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:14px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#ffffff;
+}
+.CSSTableGenerator tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #ff7f00 5%, #ff7f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #ff7f00) );
+	background:-moz-linear-gradient( center top, #ff7f00 5%, #ff7f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#ff7f00");	background: -o-linear-gradient(top,#ff7f00,ff7f00);
+
+	background-color:#ff7f00;
+}
+.CSSTableGenerator tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.CSSTableGenerator tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+
+    span {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 6px;
+        padding-right: 6px;
+        vertical-align: top;
+    }
+    
+    .one {
+        border:10px solid black;
+        border-top: 3px;
+        border-bottom: 3px;
+        border-left: 6px;
+        border-right: 16px;
+    }
+    .two {
+        border-top: 3px;
+        border-bottom: 3px;
+        border-left: 6px;
+        border-right: 16px;
+    }
+    .three {
+        border-top: 3px;
+        border-bottom: 3px;
+        border-left: 6px;
+        border-right: 16px;
+    }
+    
+</style>
     {% include "header.html" %}
 
         <DIV>
@@ -33,6 +157,47 @@
             <SCRIPT src="/static/js/pieactivitychart.js"></SCRIPT>
 			<div id="piecontainer" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
             <!-- pie chart of activity type -->
+<<<<<<< HEAD
+=======
+            <DL>
+                <DT>Total Activities Logged:</DT>
+                <DD>{{total_activities}}</DD>
+                <DT>Total Time:</DT>
+                <DD>{{total_time}}</DD>
+                
+                
+                
+            </DL>
+        </DIV>
+        
+        <DIV>
+            <H2>Recent Activity</H2>
+            <DIV class="CSSTableGenerator">   <!-- this div repeats for multiple activities
+                <H3><span class = 'one'>Activity</span><span class = 'two'>Time</span><span class = 'three'>Amount</span></H3>
+                {% for activity in activities %}
+                    <P><span class = 'one'></span><span class = 'two'>{{activity[1]}}</span><span class = 'three'>{{activity[2]}}</span></P>
+                {% end for %}-->
+                <TABLE class="clear-user-agent-styles">
+                
+                        <!-- TR Table Row -->
+                        <TR>
+                            <TD>Activity</TD>
+                            <TD>Time</TD>
+                            <TD>Amount</TD>
+                        </TR>
+                
+                        {% for activity in activities %}
+                        <!-- TR Table Row -->
+                        <TR>
+                            <TD>{{activity[0]}}</TD>
+                            <TD>{{activity[1]}}</TD>
+                            <TD>{{activity[2]}}</TD>
+                           
+                        </TR>
+                        {% end for %}
+                </TABLE>
+            </DIV>
+>>>>>>> 2626d30c4daffed77e31f819b4784b1a58579e86
         </DIV>
         
     {% include "footer.html" %}

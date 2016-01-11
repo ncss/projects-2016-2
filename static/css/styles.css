@@ -2,14 +2,16 @@
 ------- Color Scheme -------
 Base colour: #ff6600
 */
-header > h1, h2 {
+
+.headerheading{
 		padding: 25px 25px;
 		vertical-align: text-top;
 		color: #ff6600;
 		display: inline;
+		font-family: 'Josefin Sans', sans-serif;
 		}
 		
-header > ul {
+.headerui {
 	list-style-type: none;
 	margin: 0;
 	overflow: hidden;
@@ -17,11 +19,11 @@ header > ul {
 }
 
 
-header > li {
+.headerli {
 	float: left;
 }
 
-header > li a {
+.headerli a {
 	display: inline-block;
 	color: black;
 	text-align: center;
@@ -30,9 +32,10 @@ header > li a {
 	font-family: 'Josefin Sans', sans-serif;
 }
 
-header > li a:hover {
+.headerli a:hover {
 	background-color: #ff6600;
 }
+
 
 #tfnewsearch{
 	padding:5;
@@ -60,8 +63,8 @@ header > li a:hover {
 	color: #ffffff;
 	border: solid 1px #0076a3; border-right:0px;
 	background: #ff6600;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ff6600), to(#ffa366));
-	background: -moz-linear-gradient(top,  #ff6600,  #ffa366);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff6600), to(#ff6800));
+	background: -moz-linear-gradient(top,  #ff6600,  #ff6800);
 	border-top-right-radius: 5px 5px;
 	border-bottom-right-radius: 5px 5px;
 }
@@ -77,26 +80,31 @@ header > li a:hover {
 }
 
 
+
+/* core style guide */
 * {
   box-sizing: border-box;
 }
 
 html {
-  background-color: #ff6600;
+  background-color: #eab68b;
 }
 
 body {
   padding: 20px;
   background-color: white;
-  width: 960px;
+  width: 1100px;
   margin: 0 auto;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
-	line-height: 22px;
-	-ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%; 
+  line-height: 22px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
+main{
+	margin-top:150px;
+	}
 p {
 	margin: 11px;
 }
@@ -355,4 +363,123 @@ form .buttons {
   margin-top: 10px;
 }
 
-/*fix h1, h2, h3 margin*/
+
+
+
+/* ----------------------------------------------- */
+/* header                                          */
+/* ----------------------------------------------- */
+body > header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	background-color: rgba(255, 255, 255, 0.75);
+	z-index: 100;
+}
+
+	body > header img {
+		width: 150px;
+		vertical-align: middle;
+		margin-left: 20px;
+	}
+
+	body > header nav {
+		position: absolute;
+		right: 40px;
+		top: 0px;
+		height: 100px;
+		line-height: 100px;
+	}
+	
+		body > header nav a {
+			text-decoration: none;
+			color: black;
+			text-transform: uppercase;
+			margin-left: 15px;
+			font-weight: 600;
+			color: #555;
+		}
+		
+		body > header nav form {
+			border: none;
+			background-color: transparent;
+			padding: 0px;
+			height: 24px;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 20px;
+		}
+		
+			body > header nav form input {
+				height: 24px;
+				width: 120px !important;
+				margin-bottom: 0px !important;
+				display: inline-block !important;
+				padding: 0px 0px 0px 3px !important;
+			}
+
+/* ----------------------------------------------- */
+/* footer                                          */
+/* ----------------------------------------------- */
+body > footer {
+	background-color: #333;
+	color: #ccc;
+	text-align: center;
+	padding: 20px 0px;
+	margin-top: 40px;
+}
+	
+/* ----------------------------------------------- */
+/* landing page                                    */
+/* ----------------------------------------------- */
+html.landing {
+	background-color: white;
+}
+
+	html.landing body {
+		padding: 0px;
+		width: 100%;
+	}
+
+	html.landing body main {
+		position: relative;
+		z-index: 1;
+	}
+	
+		#auth-buttons {
+			text-align: center;
+			width: 700px;
+			margin: 0px auto 30px auto;
+		}
+	
+			html.landing body main form {
+				border: none;
+				padding: 0px;
+				display: inline-block;
+				width: 330px;
+			}
+			
+				html.landing body main form input {
+					width: 330px !important;
+				}
+			
+			html.landing body main form:first-child {
+				margin-right: 20px;
+			}
+			
+			html.landing body main p {
+				width: 600px;
+				margin: 0px auto;
+				margin-bottom: 15px;
+			}
+		
+		#imageslideshow1 {
+			display: block;
+			width: auto;
+			margin-bottom: 40px;
+			z-index: 1;
+		}
+
