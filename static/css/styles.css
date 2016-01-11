@@ -374,7 +374,7 @@ body > header {
 	height: 100px;
 	line-height: 100px;
 	background-color: rgba(255, 255, 255, 0.75);
-	z-index: 2;
+	z-index: 100;
 }
 
 	body > header img {
@@ -477,5 +477,7 @@ html.landing {
 			display: block;
 			width: auto;
 			margin-bottom: 40px;
+			z-index: 10;
+
 		}
 
