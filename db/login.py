@@ -64,7 +64,7 @@ class User:
 	#Returns all of the metrics a user has
 	def get_all_metrics(self):
 		if self.user_id is None:
-			raise Exception('No user ID defined. Cannot get metrics!')
+			raise Exception("No user ID defined. Cannot get metrics!")
 		
 		cur = conn.execute('''
 			SELECT *
@@ -80,7 +80,7 @@ class User:
 	#Returns all of the metrics for a specific metric
 	def get_activity_metric(self, activity):
 		if self.user_id is None:
-			raise Exception('No user ID defined. Cannot get metrics for activity ' +  activity)
+			raise Exception("No user ID defined. Cannot get metrics for activity " +  activity)
 		
 		curr = conn.execute('''
 		SELECT * 
