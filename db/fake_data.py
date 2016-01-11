@@ -22,3 +22,11 @@ cycling_metres = Metric(user = 1, activity = "Cycling", timestamp = 1452475652, 
 swimming_minutes = Metric(user = 2, activity = "Swimming", timestamp = 1452575652, metric_type = "minutes", value = 20)
 swimming_metres = Metric(user = 2, activity = "Swimming", timestamp = 1452575652, metric_type = "metres", value = 200)
 
+run_minutes.save()
+run_metres.save()
+walk_minutes.save()
+walk_metres.save()
+cycling_minutes.save()
+cycling_metres.save()
+swimming_minutes.save()
+swimming_metres.save()
