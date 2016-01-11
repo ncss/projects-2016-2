@@ -16,7 +16,7 @@ def home_handler(response, user_id):
     response.write(render("feed.html", {'logged_in': True}))
 
 def register_handler(response):
-    response.write(render("register.html", {'a': 'B'}))
+    response.write(render("register.html", {'logged_in': False}))
 
 @requires_login
 def profile_handler(response, user_id, profile_number=None):
