@@ -2,11 +2,13 @@ from tornado.ncss import Server, ncssbook_log
 from activities import ActivityInputHandler
 from engine.template import render
 from profile import ProfileHandler
-from login_backend import login, requires_login, logout, register
-
+from login_backend import login, requires_login, logout, register, get_login_cookie
 
 def landing_handler(response):
-    response.write(render("landing.html", {'html_class': 'landing'}))
+    if get_login_cookie(response) != None:
+        response.redirect('/home/')
+    else:
+        response.write(render("landing.html", {'html_class': 'landing'}))
 
 @requires_login
 def home_handler(response, user_id):
