@@ -92,7 +92,6 @@ html {
 
 body {
   padding: 20px;
-  background-color: white;
   width: 1100px;
   margin: 0 auto;
   font-size: 14px;
@@ -103,7 +102,9 @@ body {
 }
 
 main{
-	margin-top:150px;
+	background-color: white;
+	margin-top:120px;
+	padding: 20px;
 	}
 p {
 	margin: 11px;
@@ -432,11 +433,10 @@ body > header {
 /* footer                                          */
 /* ----------------------------------------------- */
 body > footer {
-	background-color: #333;
+	background-color: #fff;
 	color: #ccc;
 	text-align: center;
-	padding: 20px 0px;
-	margin-top: 40px;
+	padding: 0px 20px 20px 20px;
 }
 	
 /* ----------------------------------------------- */
@@ -489,4 +489,8 @@ html.landing {
 			margin-bottom: 40px;
 			z-index: 1;
 		}
-
+		
+	.footer {
+		background-color: #333;
+		padding: 20px 0px;
+	}
