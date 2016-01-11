@@ -26,7 +26,7 @@ def input_handler(response, user_id):
     response.write(render("input_activity.html", aih.get_template_data()))
 
 @requires_login
-def updateprofile_handler(response):
+def updateprofile_handler(response, user_id):
     response.write(render("update_profile.html", {'a': 'B'}))
 
 @requires_login
