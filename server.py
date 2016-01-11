@@ -69,7 +69,8 @@ def newuser_handler(response):
     password = response.get_field('password')
     name = response.get_field('name')
     tc = response.get_field('termsconditions')
-    print("====",tc,"====")
+    if tc != "accept":
+        response.redirect('/register/?error=no_tc')
     return register(response, email, password, name)
 
 
