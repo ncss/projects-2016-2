@@ -2,6 +2,11 @@
 ------- Color Scheme -------
 Base colour: #ff6600
 */
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   /*background-color: #ff6600;*/
 }
@@ -195,16 +200,52 @@ form {
   border: 1px solid #ff6600;
   border-radius: 5px;
   background-color: #f7f7f7;
+  padding: 40px;
 }
 
 form input:not(.button) {
   display: block;
   width: 480px;
   margin: 0 auto;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+form input:focus {
+  outline: none;
+  border: transparent;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+form textarea {
+  width: 480px;
+  height: 100px;
+  border: 1px solid #DEDEDE;
+}
+
+form p {
+  width: 480px;
+  margin: 0 auto;
+}
+
+form select {
+  width: 480px;
+  line-height: 80px;
+  margin-bottom: 20px;
 }
 
 form label {
   margin: 0 auto;
+}
+
+form h1 {
+  text-align: center;
+  margin: 0;
+}
+
+form h2 {
+  text-align: center;
+  margin: 0;
 }
 
 form h3 {
@@ -220,9 +261,11 @@ form h3 {
 }
 
 .auth input:not(.button) {
+  display: block;
+  width: 480px;
+  margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 30px;
-  padding: 15px;
   border: 1px solid #DEDEDE;
   border-radius: 3px;
 }
