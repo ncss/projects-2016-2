@@ -7,7 +7,7 @@ conn.row_factory = sqlite3.Row
 
 class User:
     
-    def __init__(self, user_id=None, username="", password="", fname="", lname="", email="", dob="", postcode="", country_code="", image=""):
+    def __init__(self, user_id=None, username="", password="", email="", fname="", lname="", dob="", postcode="", country_code="", signup_timestamp=0, image=""):
         self.user_id = user_id
         self.username = username
         self.password = password
@@ -95,15 +95,15 @@ class User:
         return metrics
         
     @staticmethod
-    def login(username, password):
+    def login(email, password):
         cur = conn.execute('''
         SELECT *
         FROM users
-        WHERE username=? AND password=?
-        ''', (username, password))
+        WHERE email=? AND password=?
+        ''', (email, password))
         row = cur.fetchone()
         if row is not None:
-             return User(**row)
+            return User(*row)
         else:
              return None
 

@@ -2,31 +2,25 @@
     {% include "header.html" %}
 
         <DIV>
-
             <FIGURE>
                 <IMG src="/static/img/profile_pic.jpg">
                 <FIGCAPTION>
                     <H1>{{full_name}}</H1>
                 </FIGCAPTION>
             </FIGURE>
-        
         </DIV>
         
         <DIV>
-        
             <H1>Personal Details</H1>
-            
                 <DL>
                     <DT>Email:</DT>
                     <DD>{{email}}</DD>
                     <DT>Full Name:</DT>
                     <DD>{{full_name}}</DD>
                 </DL>
-                
         </DIV>
         
         <DIV>
-        
             <H2>Stats</H2>
             <H3>Past Activity</H3>
             <IMG src="/static/img/graph.png" />
@@ -34,7 +28,6 @@
             <H3>Activities</H3>
             <IMG src="/static/img/piechart.png" />
             <!-- pie chart of activity type -->
-            
             <DL>
                 <DT>Total Activities Logged:</DT>
                 <DD>Result</DD>
@@ -53,20 +46,14 @@
                 <DT>Total Situps:</DT>
                 <DD>Result</DD>
             </DL>
-        
         </DIV>
         
         <DIV>
-        
             <H2>Recent Activity</H2>
-            
             <DIV>   <!-- this div repeats for multiple activities -->
-            
                 <H3>Name - Activity Type</H3>
                 <P>(Distance) and (Time) OR (count)</P>
-            
             </DIV>
-        
         </DIV>
         
     {% include "footer.html" %}

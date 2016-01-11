@@ -28,13 +28,16 @@ $(function () {
         },
         series: [{
             name: "Swimming",
-            data: [1, 3, 2, 2.5, 0, 7, 0]
+            data: [1, 3, 2, 2.5, 0, 7, 0],
+			color: "#deff00"
         }, {
             name: "Walking",
-            data: [10, 16, 0, 7, 3, 5, 4]
+            data: [10, 16, 0, 7, 3, 5, 4],
+			color: "#ff4200"
         }, {
             name: "Cycling",
-            data: [0, 0, 10, 5, 5, 4, 7]
+            data: [0, 0, 10, 5, 5, 4, 7],
+			color: "#00d2ff"
         }]
     });
 });
