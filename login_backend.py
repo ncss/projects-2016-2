@@ -19,8 +19,16 @@ def requires_login(fn):
         if get_login_cookie(response) is not None:
             return fn(response, get_login_cookie(response), *args, **kwargs)
         else:
-            print(response.request.uri)
             response.redirect('/login/')
+    return wrapper
+
+def optional_login(fn):
+    @functools.wraps(fn)
+    def wrapper(response, *args, **kwargs):
+        if get_login_cookie(response) is not None:
+            return fn(response, get_login_cookie(response), *args, **kwargs)
+        else:
+            return fn(response, None, *args, **kwargs)
     return wrapper
 
 def login(response,email,password):

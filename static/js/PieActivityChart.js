@@ -1,6 +1,6 @@
 // JavaScript Document
 $(function () {
-    $('#container').highcharts({
+    $('#piecontainer').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -8,7 +8,7 @@ $(function () {
             type: 'pie'
         },
         title: {
-            text: 'Activities'
+            text: ''
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

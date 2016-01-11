@@ -1,17 +1,20 @@
-<!DOCTYPE html>
 
 {% include "header.html" %}
 
 <body>
+
 {% for i in range(10) %}
-<article class ="feed">
-<div class="face">
-</div> 
-  <time>11:04</time>
-  <h2>Activity</h2>
-  <p>Etiam luctus ipsum sed condimentum pharetra. In hac habitasse platea dictumst. Donec aliquam ex et velit cursus, id venenatis erat malesuada. Etiam sed lectus non libero placerat posuere. Quisque porttitor enim id tellus euismod placerat.</p>
-</article>
+
+        <DIV>
+            <H2>Recent Activity</H2>
+            <DIV>   <!-- this div repeats for multiple activities -->
+                <H3>activity_type - timestamp</H3>
+                <P>distance and time OR count</P>
+            </DIV>
+        </DIV>
+
 {% end for %}
+
 </body>
 
 {% include "footer.html" %}

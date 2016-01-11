@@ -65,17 +65,3 @@ class ActivityInputHandler:
                 if current_field != None:
                     m = Metric(user=self.user_id, activity=activity_name, timestamp=time_stamp, metric_type=metric["units"], value=current_field)
                     m.save()
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-    
-    
-    
-    

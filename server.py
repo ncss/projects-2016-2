@@ -2,18 +2,23 @@ from tornado.ncss import Server, ncssbook_log
 from activities import ActivityInputHandler
 from engine.template import render
 from profile import ProfileHandler
-from login_backend import login, requires_login, logout, register
+from login_backend import login, requires_login, logout, register, optional_login
 
-
-def landing_handler(response):
-    response.write(render("landing.html", {'html_class': 'landing'}))
+@optional_login
+def landing_handler(response, user_id):
+    if user_id != None:
+        response.redirect('/home/')
+    else:
+        vars = {'logged_in': user_id is not None,
+                'html_class': 'landing'}
+        response.write(render("landing.html", vars))
 
 @requires_login
 def home_handler(response, user_id):
-    response.write(render("feed.html", {'a': 'B'}))
+    response.write(render("feed.html", {'logged_in': True}))
 
 def register_handler(response):
-    response.write(render("register.html", {'a': 'B'}))
+    response.write(render("register.html", {'logged_in': False}))
 
 @requires_login
 def profile_handler(response, user_id, profile_number=None):
@@ -21,36 +26,44 @@ def profile_handler(response, user_id, profile_number=None):
     if profile_number is not None:
         display_profile = profile_number
     poh = ProfileHandler(display_profile)
-    response.write(render("profile.html", poh.display_profile()))
+    vars = poh.display_profile()
+    vars['logged_in'] = True
+    response.write(render("profile.html", vars))
 
 @requires_login
 def input_handler_get(response, user_id):
     aih = ActivityInputHandler(user_id)
-    response.write(render("input_activity.html", aih.get_template_data()))
+    vars = aih.get_template_data()
+    vars['logged_in'] = True
+    response.write(render("input_activity.html", vars))
     
 @requires_login
 def input_handler_post(response, user_id):
     aih = ActivityInputHandler(user_id)
     aih.load_activity_data(response)
     post = True
-    response.write(render("input_activity.html", aih.get_template_data(post)))
+    vars = aih.get_template_data(post)
+    vars['logged_in'] = True
+    response.write(render("input_activity.html", vars))
 
 @requires_login
 def updateprofile_handler(response, user_id):
-    response.write(render("update_profile.html", {'a': 'B'}))
+    response.write(render("update_profile.html", {'logged_in': True}))
 
 @requires_login
 def template_demo(response, user_id):
-    response.write(render("test.html", {'a': 'B', 'user_id': user_id, 'hello': 'hello'}))
+    response.write(render("test.html", {'a': 'B', 'user_id': user_id, 'hello': 'hello', 'logged_in': True}))
 
 def search_handler(response):
     response.write(render("search_results.html", {'a': 'B'}))
 
-def login_handler(response):
-    response.write(render("login.html", {'a': 'B'}))
+@optional_login
+def login_handler(response, user_id):
+    response.write(render("login.html", {'logged_in': user_id is not None}))
 
-def page404_handler(response):
-  response.write(render("404.html", {}))
+@optional_login
+def page404_handler(response, user_id):
+    response.write(render("404.html", {'logged_in': user_id is not None}))
 
 def auth_handler(response):
     email = response.get_field('email')
