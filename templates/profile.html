@@ -36,35 +36,7 @@
                 <DT>Total Time:</DT>
                 <DD>{{total_time}}</DD>
                 
-                {% if total_km_run != 0 %}
-                <DT>Total Km's Run:</DT>
-                <DD>{{total_km_run)}}</DD>
-                {% end if %}
                 
-                {% if total_km_cycled != 0 %}
-                <DT>Total Km's Cycled:</DT>
-                <DD>{{total_km_cycled}}</DD>
-                {% end if %}
-                
-                {% if total_km_swum != 0 %}
-                <DT>Total Km's Swum:</DT>
-                <DD>{{total_km_swum}}</DD>
-                {% end if %}
-                
-                {% if total_km_walked != 0 %}
-                <DT>Total Km's Walked:</DT>
-                <DD>{{total_km_walked}}</DD>
-                {% end if %}
-                
-                {% if total_pushups != 0 %}
-                <DT>Total Pushups:</DT>
-                <DD>{{total_pushups}}</DD>
-                {% end if %}
-                
-                {% if total_situps != 0 %}
-                <DT>Total Situps:</DT>
-                <DD>{{total_situps}}</DD>
-                {% end if %}
                 
             </DL>
         </DIV>
@@ -72,8 +44,8 @@
         <DIV>
             <H2>Recent Activity</H2>
             <DIV>   <!-- this div repeats for multiple activities -->
-                <H3>{{activity_type}} - {{}}</H3>
-                <P>(Distance) and (Time) OR (count)</P>
+                <H3>{{activity_type}} - {{timestamp}}</H3>
+                <P>{{distance}} and {{time}} OR {{count}}</P>
             </DIV>
         </DIV>
         
