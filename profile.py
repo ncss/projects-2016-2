@@ -26,10 +26,14 @@ class ProfileHandler:
                "y": 5
             }]
     
+        activities_list = [
+                        ["Swimming", "10pm", "5km"],
+                        ["Hiking", "3pm", "16km"] ]
     
         user_data = {
             "email": self.user.email,
             "full_name": (self.user.fname + ' ' + self.user.lname),
-            "chart_data_json": json.dumps(chart_data)
+            "chart_data_json": json.dumps(chart_data),
+            "activities": activities_list
         }
         return user_data
