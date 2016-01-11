@@ -8,11 +8,12 @@ Base colour: #ff6600
 }
 
 html {
-  /*background-color: #ff6600;*/
+  background-color: #ff6600;
 }
 
 body {
-  /*background-color: white;*/
+  /*padding: 20px;*/
+  background-color: white;
   width: 960px;
   margin: 0 auto;
   font-size: 14px;
@@ -207,14 +208,16 @@ form input:not(.button) {
   display: block;
   width: 480px;
   margin: 0 auto;
-  padding: 12px;
+  padding: 10px;
   margin-bottom: 20px;
+  border: 1px solid #DEDEDE;
+  border-radius: 3px;
+  outline: none;
 }
 
-form input:focus {
-  outline: none;
-  border: transparent;
-  box-shadow: 0 0 10px #9ecaed;
+form input:focus, form textarea:focus {
+  box-shadow: 0 0 10px 2px #9ecaed;
+  border: 1px solid #9ecaed;
 }
 
 form textarea {
@@ -253,19 +256,22 @@ form h3 {
   margin: 0;
 }
 
+form .buttons {
+  text-align: right;
+  
+}
+
 .auth {
   width: 600px;
   margin: 0 auto;
-  text-align: center;
+  text-align: right;
   padding: 40px;
 }
 
 .auth input:not(.button) {
   display: block;
-  width: 480px;
-  margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  width: 100%;
+  margin: 20px auto;
   border: 1px solid #DEDEDE;
   border-radius: 3px;
 }
