@@ -44,3 +44,11 @@ header a {
 header a:hover {
 	cursor: hand;
 }
+
+#imageslideshow1{
+    display: block;
+    margin: auto;
+
+    width: auto;
+    max-width: 100%;
+}
