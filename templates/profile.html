@@ -124,15 +124,80 @@
         border-left: 6px;
         border-right: 16px;
     }
-	#profile_title{
-	position: relative;
-	top:-300px;
-	left: 50px;
+	
+	
+	#friendstable img{
+		height: 40px;
+		width: 40px;
+	}
+	
+	#friendstable {
+	float:right;
+	width: 350px;
+	height: 350px;
+	text-align:right;
+	font-size: 2em;
+	}
+	
+	#profilepic img {
+	width: 100%;
+	}
+	
+	#profilepic {
+	float:left;
+	height: 450px;
+	width: 400px;
 	}
     
+	#graphdiv {
+	  clear:both;
+		}
+		
 </style>
-    
-        <DIV>
+	<div id="profilehead">
+    <div >
+					<table id="friendstable">
+						<tr>
+						<th colspan=5>Friends</th>
+						</tr>
+						<tr>
+						<td><img src="https://en.gravatar.com/userimage/99536151/b385ab26a1b12bfda017c9afa4bdf9cd.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/0503f8e3cfab0f1026c87b4f7399b980.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/649c9279cc45d6b259350feb0fb71770.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/7bb9afe31fcb8c53a946346b2f9d6b1e.jpg?size=200"</td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/1476b93b8ba85972473813b424831e12.jpg?size=200" </td>
+						</tr>
+						<tr>
+						<td><img src="https://en.gravatar.com/userimage/99536151/a2da14e006d508e8512993f3647a32a0.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/d3812dcd7e238e4885f1f92511fb77f9.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/5c9e7c8770bf91ef0e3e78de494ee1a1.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/56db2b8980a14007ae5b8219c3a44285.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/9657b7fb05d7b5239f30ecb8b50b9e79.jpg?size=200" </td>
+						</tr>
+						<tr>
+						<td><img src="https://en.gravatar.com/userimage/99536151/97c3fbf82ef10fcb9c2b0891c2aa47db.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/11d5b7bf40bcd605b147721559b171f3.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/66a2b732ba550aca5e255054b9d2a4ba.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/9bd1d0dbe694579807f64c168032d55f.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/134641ade908ad9e9a9e7027ca49db8a.jpg?size=200" </td>
+						</tr>
+						<tr>
+						<td><img src="https://en.gravatar.com/userimage/99536151/8fc18881a1731a4d14c4f4b594ff828a.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/84770c8a088bbf4e826bef3239163613.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/ac6f0a63d2824676384e8642cf2683f7.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/56c321df945f2b4c81c2230c1073ac47.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/72c52ffb6aef95cacd46f35e9872f91d.jpg?size=200" </td>
+						</tr>
+						<tr>
+						<td><img src="https://en.gravatar.com/userimage/99536151/42c690d1e469882e301a4c2ce20df19c.jpg?size=200" </td>
+						<td><img src="https://en.gravatar.com/userimage/99536151/25e16dd9d4f585b60fb1e272c154f7a8.jpg?size=200" </td>
+
+						</tr>
+					</table>
+						
+				</div>
+        
+        <DIV id="profilepic">
             <FIGURE>
                 <IMG src="{{pic_url}}">
                 <FIGCAPTION>
@@ -140,9 +205,9 @@
                 </FIGCAPTION>
             </FIGURE>
         </DIV>
-
-        
-        <DIV>
+				
+			</div>
+        <DIV id="graphdiv">
             <H2>Stats</H2>
             <SCRIPT src="/static/js/landingtest.js"></SCRIPT>
             <div id="linecontainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
