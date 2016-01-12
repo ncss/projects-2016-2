@@ -113,6 +113,7 @@ main{
 	background-color: white;
 	margin-top: 110px;
 	padding: 20px;
+	border-radius:5px;
 
 	}
 p {
@@ -307,6 +308,7 @@ ol {
 
 form {
   background-color: #f7f7f7;
+  padding: 20px;
 }
 
 .tabbed_form {
